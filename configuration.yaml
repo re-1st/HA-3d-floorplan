@@ -1,0 +1,583 @@
+http:
+
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - !secret trusted_proxies_1
+    - !secret trusted_proxies_1
+  login_attempts_threshold: 3
+  ip_ban_enabled: false
+lovelace:
+  mode: yaml
+
+  resources:
+    - url: /hacsfiles/lovelace-more-info-card/more-info-card.js
+      type: module
+    - url: /hacsfiles/my-cards/my-cards.js
+      type: module
+    - url: /hacsfiles/kiosk-mode/kiosk-mode.js
+      type: module
+    - url: /hacsfiles/tv-card/tv-card.js
+      type: module
+    - url: /webrtc/webrtc-camera.js?v2.3.0
+      type: module
+    - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+      type: module
+    - type: module
+      url: /hacsfiles/timer-bar-card/timer-bar-card.js
+    - url: /hacsfiles/select-list-card/select-list-card.js
+      type: module
+    - url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+      type: module
+    - type: module
+      url: /hacsfiles/config-template-card/config-template-card.js
+    - type: module
+      url: /hacsfiles/slider-button-card/slider-button-card.js
+    - type: module
+      url: /hacsfiles/light-entity-card/light-entity-card.js
+    - type: module
+      url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+    - type: module
+      url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+    - type: module
+      url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    - type: module
+      url: /hacsfiles/weather-card/weather-card.js
+    - type: module
+      url: /hacsfiles/simple-thermostat/simple-thermostat.js
+    - type: module
+      url: /hacsfiles/vacuum-card/vacuum-card.js
+    - type: module
+      url: /hacsfiles/swipe-card/swipe-card.js
+    - type: module
+      url: /hacsfiles/button-card/button-card.js
+    - type: module
+      url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
+    - type: module
+      url: /hacsfiles/spotify-card/spotify-card.js
+    - type: module
+      url: /hacsfiles/lovelace-mushroom/mushroom.js
+    - type: module
+      url: /hacsfiles/lovelace-state-switch/state-switch.js
+    - type: module
+      url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+    - type: module
+      url: /hacsfiles/list-card/list-card.js
+    - type: module
+      url: /hacsfiles/tv-card/tv-card.js
+    - url: /hacsfiles/hass-hue-icons/hass-hue-icons.js
+      type: module
+    - url: /hacsfiles/Bubble-Card/bubble-pop-up.js?v=0.0.0
+      type: module
+
+
+
+
+####### O365 ########
+
+o365:
+  accounts:
+    - account_name: Account5 # Do not use email address or spaces
+      client_id: !secret o365client
+      client_secret: !secret o365secret
+      alt_auth_method: false
+      enable_update: False
+      email_sensor:
+        - name: inbox
+          max_items: 2
+          is_unread: True
+          download_attachments: False
+
+
+default_config:
+
+
+# Text to speech
+tts:
+  - platform: microsoft
+    api_key: !secret tts_api_key
+    language: nl-nl
+    type: ColetteNeural
+    region: eastus
+
+
+
+
+script: !include scripts.yaml
+scene: !include scenes.yaml
+automation: !include automations.yaml
+homeassistant:
+  media_dirs:
+    music: /media
+
+
+
+panel_custom:
+
+  - name: ha_integ
+    sidebar_title: Integrations
+    sidebar_icon: mdi:chip
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/integrations'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_entet
+    sidebar_title: Entities
+    sidebar_icon: mdi:devices
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/entities'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_addons
+    sidebar_title: Addons
+    sidebar_icon: mdi:palette
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'hassio/dashboard'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_auto
+    sidebar_title: Automations
+    sidebar_icon: mdi:arrow-collapse
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/automation'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator  
+  - name: check_config
+    sidebar_title: Check Config
+    sidebar_icon: mdi:check
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'developer-tools/yaml'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+
+
+
+
+
+
+
+frontend:
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
+  themes: !include_dir_merge_named themes
+
+
+
+recorder:
+  # db_url: !secret recorder_db_url
+  # auto_purge: false
+  # include:
+  #   domains:
+  #     - calendar
+  #     - switch
+  #     - input_boolean
+  #     - climate
+  #     - plant
+  #     - light
+  #     - weather
+  #     - person
+  #     - fan
+  #     - binary_sensor
+
+  #   entity_globs:
+  #     - sensor.*energy_*
+  #     - sensor.*_illuminance
+  #     - sensor.p1_*
+  #     - sensor.*_energy*
+  #     - sensor.*_temperature
+  #     - sensor.temp_*
+  #     - sensor.*_motion*
+  #     - sensor.ble_*
+  #     - sensor.*_verbruik_*
+  #     - sensor.luchtventilatie*
+  #     - sensor.plant*
+  #     - plant.*
+  #     - sensor.*flameboss*
+  #     - _*motion*
+  #     - sensor.*buien*
+  #     - input_number.*flameboss*
+  #     - sensor.gewicht_*
+  #     - sensor.citroenplant_*
+  #     - sensor.olijfbomen_*
+  #     - sensor.kruidenwand_*
+  #     - sensor.hopplant_*
+  #     - sensor.meater_*
+  #     - sensor.power_*
+  #     - sensor.afvalinfo_*
+      
+  #   entities:
+  #     - weather.buienweather
+  #     - sensor.mh_z19_co2_value
+  #     - sensor.mh_z19_co2_value_woon
+  #     - input_number.bbq_test2
+  #     - input_number.bbq_test1
+  #     - sensor.ibbq_temperature_probe_2
+  #     - sensor.ibbq_temperature_probe_1
+  #     - input_text.flameboss_message_id
+  #     - sensor.bas
+  #     - sensor.shel
+  #     - sensor.huidige_energielevering
+  #     - sensor.huidig_verbruik_electra_bereken_zonnepanelen
+  #     - sensor.zonopbrengst_daily_kwh
+  #     - sensor.ibbq_temperature_probe_2s
+  #     - sensor.ibbq_temperature_probe_1
+  #     - sensor.woonkamer_humidity
+  #     - vacuum.roborock_vacuum_s6
+  #     - sensor.pc_energieverbruik
+  #     - media_player.sync_box
+  #     - sensor.badkamer_vochtsensor
+  #     - sensor.badkamer_vochtsensor_2
+  #     - sensor.badkamer_vochtsensor_3
+  #     - sensor.lightlevel_22_tom_motion_sensor
+  #     - sensor.tuin_sensor_illuminance
+
+
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+
+
+
+camera:
+
+
+#### WOL ####
+wake_on_lan:
+
+
+spotcast:
+  sp_dc: !secret spotcast_dc
+  sp_key: !secret spotcast_key
+
+#### BABYMONITOR ####
+stream:
+binary_sensor:
+
+  - platform: ffmpeg_noise
+    name: ffmpeg_baby_noise_tom
+    initial_state: false
+    input: !secret cam_tom
+    peak: -28
+    duration: 2
+    reset: 35
+    extra_arguments: -nostats -vn
+
+  - platform: ffmpeg_noise
+    name: ffmpeg_baby_noise_bram
+    initial_state: false
+    input: !secret cam_bram
+    peak: -30
+    duration: 2
+    reset: 35
+    extra_arguments: -nostats -vn
+### AIRCO ####
+
+
+
+sensor:
+
+
+  - platform: sql
+    db_url: !secret db_url
+    icon: mdi:database
+    queries:
+      - name: HASS DB size
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+        column: 'value'
+        unit_of_measurement: MB
+    
+  - platform: template
+    scan_interval: 5
+    sensors:
+      pittemp_alert:
+        friendly_name: "bbq_alert_1"
+        unit_of_measurement: "°C"
+        value_template:  "{{ states('input_number.bbq_pit_temp_alert') | float(0) }}"
+      meattemp_alert:
+        friendly_name: "bbq_alert_2"
+        unit_of_measurement: "°C"
+        value_template:  "{{ states('input_number.bbq_meat_temp_alert') | float(0) }}"
+
+  # - platform: template
+  #   sensors:
+  #     airpurifier_aqi:
+  #       friendly_name: Air Purifier Air Quality Index
+  #       value_template: '{{ states.fan.xiaomi_air_purifier.attributes.aqi }}'
+  #       icon_template: mdi:weather-windy
+  #     airpurifier_temperature:
+  #       friendly_name: Air Purifier Temperature
+  #       value_template: '{{ states.fan.xiaomi_air_purifier.attributes.temperature }}'
+  #       unit_of_measurement: '°C'
+  #     airpurifier_humidity:
+  #       friendly_name: Air Purifier Humidity
+  #       value_template: '{{ states.fan.xiaomi_air_purifier.attributes.humidity }}'
+  #       unit_of_measurement: '%'
+  #       icon_template: mdi:water-percent
+
+  #     airhumidifier_temperature:
+  #       friendly_name: Air Humidifier Temperature
+  #       value_template: '{{ states.fan.xiaomi_air_humidifier.attributes.temperature }}'
+  #       unit_of_measurement: '°C'
+  #     airhumidifier_humidity:
+  #       friendly_name: Air Humidifier Humidity
+  #       value_template: '{{ states.fan.xiaomi_air_humidifier.attributes.humidity }}'
+  #       unit_of_measurement: '%'
+  #       icon_template: mdi:water-percent
+
+
+  - platform: websocket_api
+
+
+
+
+
+  #######################################################################################
+  ## Templates (Used for updating text in the UI and converting sensors to CSS values )
+  #######################################################################################
+
+
+  - platform: template
+    scan_interval: 60
+    sensors:
+      huidige_energielevering:
+        value_template: >-
+          {% if states('sensor.power_photovoltaics_fronius_power_flow_0_http_192_168_2_18')  == 'unknown' %}
+            0
+          {% else %}
+            {{ states('sensor.power_photovoltaics_fronius_power_flow_0_http_192_168_2_18') }}
+          {% endif %}
+        unit_of_measurement: "W"
+
+      huidige_daglevering:
+        value_template: >-
+          {{ states.sensor.energy_day_fronius_power_flow_0_http_192_168_2_18.state.split('.')[0] }}
+        unit_of_measurement: "Wh"
+
+
+
+
+
+  - platform: time_date
+    display_options:
+      - "time"
+
+
+  - platform: template
+    sensors:
+      dayoftheweek:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()] }}"
+
+
+
+  # HomeWizard P1 meter
+
+
+  - platform: template
+    scan_interval: 60
+    sensors:
+      studio_temp_airco:
+        friendly_name: "Airco temperatuur studio"
+        unit_of_measurement: "°C"
+        value_template: "{{ state_attr('climate.studio', 'current_temperature') }}"
+  - platform: template
+    scan_interval: 60
+    sensors:
+      studio_temp_target:
+        friendly_name: "Target temperatuur studio"
+        unit_of_measurement: "°C"
+        value_template: "{{ state_attr('climate.studio', 'temperature') }}"
+      
+  - platform: template
+    scan_interval: 600
+    sensors:
+      zonopbrengst_daily_kwh:
+        friendly_name: "zonopbrengst in kwh"
+        unit_of_measurement: "kwh"
+        value_template: "{{ (states('sensor.energy_day_fronius_inverter_1_http_192_168_2_18')|float(0) )/1000}} "
+  - platform: template
+    scan_interval: 2
+    sensors:
+      duco_fanspeed:
+        friendly_name: "duco fanspeed"
+        unit_of_measurement: "%"
+        value_template:  "{{ state_attr('fan.open_duco', 'percentage') | float(0) }}"
+
+
+
+
+  - platform: template
+    scan_interval: 600
+    sensors:
+      radio_bg:
+        friendly_name: "radio artwork"
+        value_template: "/local/ui/ui_img/{{ states('input_select.radio') }}.png "
+      media_bg:
+        friendly_name: "media artwork"
+        value_template: "/local/media//{{ states('input_select.afspeellijst') }}/cover.png "
+
+
+
+
+  - platform: template
+    scan_interval: 60
+    sensors:
+      daily_energy:
+        friendly_name: Daily Energy
+        unit_of_measurement: kWh
+        value_template: "{{ (states('sensor.daily_energy_offpeak')|float(0) + states('sensor.daily_energy_peak')|float(0)) | round(3)}}"
+      weekly_energy:
+        friendly_name: Weekly Energy
+        unit_of_measurement: kWh
+        value_template: "{{ (states('sensor.weekly_energy_offpeak')|float(0) + states('sensor.weekly_energy_peak')|float(0)) | round(3) }}"
+      monthly_energy:
+        friendly_name: Monthly Energy
+        unit_of_measurement: kWh
+        value_template: "{{ (states('sensor.monthly_energy_offpeak')|float(0) + states('sensor.monthly_energy_peak')|float(0)) | round(3) }}"
+      huidig_verbruik_electra_bereken_zonnepanelen:
+        friendly_name: Huidig verbruik electriciteit
+        unit_of_measurement: W
+        value_template: "{{ states('sensor.p1_meter_3c39e7232f30_active_power')|float(0) + states('sensor.huidige_energielevering')|float(0) }}"
+
+  - platform: template
+    scan_interval: 10
+    sensors:
+      lightcounter_woonkamer:
+        friendly_name: Lampen aan in de woonkamer
+        value_template: "{{ states.light | selectattr('state', 'eq', 'on') | rejectattr('name', 'search', '2nd Floor') | map(attribute='entity_id') | map('area_name') | select('in', ['Woonkamer'])| list | count }}"
+        
+#################################################################
+## Light Groups
+#################################################################
+
+light:
+  - platform: group
+    name: keukenspots
+    entities:
+      - light.keukenspot_1
+      - light.keukenspot_2
+      - light.keukenspot_3
+
+  - platform: group
+    name: tuinkleur
+    entities:
+      - light.ledstrip_tuin
+      - light.tuinsokkel_links
+      - light.tuinsokkel_rechts
+      - light.wandlamp_schuur
+      - light.hue_discover_outdoor_wall_1
+
+  - platform: group
+    name: tuincompleet
+    entities:
+      - light.hue_wandlamp
+      - light.tuinsokkel_links
+      - light.tuinsokkel_rechts
+      - light.wandlamp_schuur
+      - light.ledstrip_tuin
+      - light.hue_discover_outdoor_wall_1
+
+#################################################################
+## PLANTS
+#################################################################
+plant:
+  olijfbomen:
+    sensors:
+      moisture: sensor.olijfbomen_moisture
+      battery: sensor.olijfbomen_battery_level
+      temperature: sensor.olijfbomen_temperature
+      conductivity: sensor.olijfbomen_conductivity
+      brightness: sensor.olijfbomen_illuminance
+      
+    min_moisture: 15
+    min_battery: 10
+    min_conductivity: 200
+  citroenplant:
+    sensors:
+      moisture: sensor.citroenplant_moisture
+      battery: sensor.citroenplant_battery_level
+      temperature: sensor.citroenplant_temperature
+      conductivity: sensor.citroenplant_conductivity
+      brightness: sensor.citroenplant_illuminance
+    min_moisture: 15
+    min_battery: 10
+    min_conductivity: 350
+  hoppplant:
+    sensors:
+      moisture: sensor.hopplant_moisture
+      battery: sensor.hopplant_battery_level
+      temperature: sensor.hopplant_temperature
+      conductivity: sensor.hopplant_conductivity
+      brightness: sensor.hopplant_illuminance
+    min_moisture: 15
+    min_battery: 10
+    min_conductivity: 350
+  kruidenwand:
+    sensors:
+      moisture: sensor.kruidenwand_moisture
+      battery: sensor.kruidenwand_battery_level
+      temperature: sensor.kruidenwand_temperature
+      conductivity: sensor.kruidenwand_conductivity
+      brightness: sensor.kruidenwand_illuminance
+
+    min_moisture: 15
+    min_battery: 10
+    min_conductivity: 350
+
+
+
+
+##############################
+## Utility Meter            ##
+##############################
+
+### Energie verbruik min zonnepanelen
+utility_meter:
+  daily_energy_peak:
+    source: sensor.p1_meter_3c39e7232f30_total_power_import_t1
+    cycle: daily
+    net_consumption: true
+  daily_energy_offpeak:
+    source: sensor.p1_meter_3c39e7232f30_total_power_import_t2
+    cycle: daily
+    net_consumption: true
+
+  weekly_energy_offpeak:
+    source: sensor.p1_meter_3c39e7232f30_total_power_import_t1
+    cycle: weekly
+    net_consumption: true
+  weekly_energy_peak:
+    source: sensor.p1_meter_3c39e7232f30_total_power_import_t2
+    cycle: weekly
+    net_consumption: true
+
+  monthly_energy_peak:
+    source: sensor.p1_meter_3c39e7232f30_total_power_import_t1
+    cycle: monthly
+    net_consumption: true
+
+  monthly_energy_offpeak:
+    source: sensor.p1_meter_3c39e7232f30_total_power_import_t2
+    cycle: monthly
+    net_consumption: true
+  ### zonnepanelen
+
+  weekly_energy_zonnepanelen:
+    source: sensor.energy_total_fronius_power_flow_0_http_192_168_2_18
+    cycle: weekly
+  monthly_energy_zonnepanelen:
+    source: sensor.energy_total_fronius_power_flow_0_http_192_168_2_18
+    cycle: monthly
+  yearly_energy_zonnepanelen:
+    source: sensor.energy_total_fronius_power_flow_0_http_192_168_2_18
+    cycle: yearly
+

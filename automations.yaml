@@ -1,0 +1,615 @@
+- id: '1609288723118'
+  alias: tuindoppelaar aan
+  description: rechterknop
+  trigger:
+  - device_id: e7ec31a1b93908ea0dd9eba9cad5aeda
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: right
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.tuin_sfeer
+    data:
+      transition: 9
+  mode: single
+- id: '1609288947567'
+  alias: tuindoppelaar uit
+  description: linkerknop
+  trigger:
+  - device_id: e7ec31a1b93908ea0dd9eba9cad5aeda
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: left
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.tuincompleet
+  mode: single
+- id: '1617310082428'
+  alias: stofzuiger reset
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition:
+  - condition: state
+    entity_id: input_boolean.room_is_cleaned
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.room_is_cleaned
+  mode: single
+- id: '1618100019517'
+  alias: trapkast
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 592ab0b3523dcaa4c622644a0493fa7c
+    entity_id: binary_sensor.openclose_25
+    domain: binary_sensor
+    id: trapkastauto
+  condition: []
+  action:
+  - type: turn_on
+    device_id: fa02b64e0ba4ebff4f37a15b62f48380
+    entity_id: light.trapkast
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1618100050731'
+  alias: trapkast (dicht)
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 592ab0b3523dcaa4c622644a0493fa7c
+    entity_id: binary_sensor.openclose_25
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_off
+    device_id: fa02b64e0ba4ebff4f37a15b62f48380
+    entity_id: light.trapkast
+    domain: light
+  mode: single
+- id: '1619819318393'
+  alias: Trapswitch
+  description: ''
+  trigger:
+  - device_id: 4a7b9c5a7a42ef3cc31a025b6e420d29
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: turn_on
+  condition: []
+  action:
+  - service: light.toggle
+    data:
+      brightness: 101
+    target:
+      entity_id: light.hue_white_lamp_1
+  mode: single
+- id: '1623362673031'
+  alias: stofzuiger reset 2
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition:
+  - condition: state
+    entity_id: input_boolean.stofzuiger_aanzetten
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.stofzuiger_aanzetten
+  mode: single
+- id: '1625614913749'
+  alias: gang boven switch  (rechts)
+  description: ''
+  trigger:
+  - device_id: a183419423257b0384b99897bbf60f68
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: right
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      device_id: f46c98a03390490fbbbca5fd623a374f
+  mode: single
+- id: '1625841533498'
+  alias: gang boven switch  (links)
+  description: ''
+  trigger:
+  - device_id: a183419423257b0384b99897bbf60f68
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: left
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.zolder_overloop_lights
+  mode: single
+- id: '1628254443466'
+  alias: dashboard toggle light
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_text.lamptoggle
+    id: dashboard toggle
+  condition: []
+  action:
+  - service: script.toggle_light_with_text_input
+  mode: restart
+- id: '1629813569145'
+  alias: Lichten uit om 10:00 uur
+  description: ''
+  trigger:
+  - platform: time
+    at: '10:00:00'
+    id: allelichtenuit10:00
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.lichten_uit_overal
+  mode: single
+- id: '1632309360451'
+  alias: gangboven helderder
+  description: ''
+  trigger:
+  - device_id: a183419423257b0384b99897bbf60f68
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: right
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_step_pct: 100
+    target:
+      entity_id: light.hue_white_lamp_1
+  mode: single
+- id: '1662563996778'
+  alias: Luchtventilatie lager zetten
+  description: ''
+  trigger:
+  - platform: time
+    at: '10:45:00'
+  condition: []
+  action:
+  - service: fan.set_percentage
+    data:
+      percentage: 25
+    target:
+      entity_id: fan.open_duco
+  mode: single
+- id: '1662598280084'
+  alias: Liveview off
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition: []
+  action:
+  - service: input_select.select_option
+    data:
+      option: 'Off'
+    target:
+      entity_id: input_select.live_view
+  mode: single
+- id: '1662598345863'
+  alias: Luchtventilatie einde ochtend
+  description: ''
+  trigger:
+  - platform: time
+    at: '11:00:00'
+  condition: []
+  action:
+  - service: script.zet_luchtventilatie_op_max
+    data: {}
+  mode: single
+- id: '1663024375644'
+  alias: Tablet refresh
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '30'
+  condition: []
+  action:
+  - service: browser_mod.close_popup
+    data: {}
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  - service: browser_mod.refresh
+    data: {}
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  mode: single
+- id: '1664370136832'
+  alias: QR CODE WIFI
+  description: Schudden met cube
+  trigger:
+  - device_id: f6968af3152b5aa911c597f397406570
+    domain: deconz
+    platform: device
+    type: remote_gyro_activated
+    subtype: ''
+  condition: []
+  action:
+  - service: tts.microsoft_say
+    data:
+      entity_id: media_player.audio_nest
+      message: Scan de QR code op de tablet om verbinding te maken met ons netwerk
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.qr_toggle
+  mode: single
+- id: '1664926690632'
+  alias: Low battery level detection & notification for all battery sensors
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      actions:
+      - service: notify.persistent_notification
+        data:
+          title: Batterij vervangen
+- id: '1668629739731'
+  alias: HA startup
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: input_button.press
+    data: {}
+    target:
+      entity_id: input_button.ha_restarted
+  mode: single
+- id: '1676753506786'
+  alias: Apie simulator
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:45:00
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 230
+      - 204
+      - 76
+      brightness_pct: 1
+    target:
+      device_id: 4f1a515868b497d1785bd255923dff71
+  mode: single
+- id: '1684673287576'
+  alias: rechterknop tuindoppel zonnescherm dicht
+  description: zonneschermdicht
+  trigger:
+  - device_id: e7ec31a1b93908ea0dd9eba9cad5aeda
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: right
+  condition: []
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id: a4aba83302a1d1cca963bf599a5e8401
+  mode: single
+- id: '1684673385280'
+  alias: zonnescherm open tuindoppelaar
+  description: zonneschermopen
+  trigger:
+  - device_id: e7ec31a1b93908ea0dd9eba9cad5aeda
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: left
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id: a4aba83302a1d1cca963bf599a5e8401
+  mode: single
+- id: '1687862073022'
+  alias: Zonnescherm status
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.zonnescherm
+    attribute: current_position
+  condition: []
+  action:
+  - service: input_text.set_value
+    data:
+      value: midden
+    target:
+      entity_id: input_text.zonnescherm
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: cover.zonnescherm
+        above: 5
+        attribute: current_position
+        below: 75
+      sequence:
+      - service: input_text.set_value
+        data:
+          value: midden
+        target:
+          entity_id: input_text.zonnescherm
+    - conditions:
+      - condition: numeric_state
+        entity_id: cover.zonnescherm
+        attribute: current_position
+        above: 75
+      sequence:
+      - service: input_text.set_value
+        data:
+          value: open
+        target:
+          entity_id: input_text.zonnescherm
+    - conditions:
+      - condition: numeric_state
+        entity_id: cover.zonnescherm
+        attribute: current_position
+        below: 6
+      sequence:
+      - service: input_text.set_value
+        data:
+          value: dicht
+        target:
+          entity_id: input_text.zonnescherm
+  mode: single
+- id: '1687873735781'
+  alias: Zonnescherm service actie
+  description: Zonnescherm service actie
+  trigger:
+  - platform: event
+    event_type: call_service
+    event_data:
+      domain: cover
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      message: Zonnescherm wordt geopend
+      title: Zonnescherm
+  mode: single
+- id: '1697044706492'
+  alias: Tag NFC-TEST-TAG is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 37cce540-836e-4c4d-914b-b1cf94f8a0b1
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.studio_scubahue
+    metadata: {}
+  mode: single
+- id: '1699289002240'
+  alias: La metric Status Carrroussel
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.mh_z19_co2_value
+  - platform: state
+    entity_id:
+    - sensor.studio_temp_airco
+  condition: []
+  action:
+  - service: lametric.message
+    data:
+      cycles: 3
+      device_id: bb39f9b8865dd5c3bb4775d6fa1542a1
+      message: '{{ states.sensor.mh_z19_co2_value.state }}'
+      icon: '16949'
+  - service: lametric.message
+    data:
+      cycles: 3
+      device_id: bb39f9b8865dd5c3bb4775d6fa1542a1
+      message: '{{ states.sensor.studio_temp_airco.state }}'
+      icon: '14592'
+  - service: lametric.message
+    data:
+      cycles: 3
+      device_id: bb39f9b8865dd5c3bb4775d6fa1542a1
+      message: '{{ states(''sensor.pc_verbruik_active_power'') | float | round(0)
+        }} w'
+      icon: '21256'
+  mode: queued
+  max: 2
+- id: '1701732344287'
+  alias: studio rolgordijn rechts openen
+  description: ''
+  trigger:
+  - device_id: c2a5aabfc964f3969b81b412ddccefe9
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: open
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      entity_id: cover.window_covering_device_2
+  mode: single
+- id: '1701732396586'
+  alias: studio rolgordijn rechts sluiten
+  description: ''
+  trigger:
+  - device_id: c2a5aabfc964f3969b81b412ddccefe9
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+  condition: []
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.window_covering_device_2
+  mode: single
+- id: '1701781260612'
+  alias: studio rolgordijn rechts stoppen
+  description: ''
+  trigger:
+  - device_id: c2a5aabfc964f3969b81b412ddccefe9
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: open
+  - device_id: c2a5aabfc964f3969b81b412ddccefe9
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: close
+  condition: []
+  action:
+  - service: cover.stop_cover
+    data: {}
+  mode: single
+- id: '1701875358429'
+  alias: Studio rolgordijn kiep open
+  description: ''
+  trigger:
+  - device_id: 886118399754577db2fd3b5739588bc6
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: open
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id: ded819e566634df49944633b87a67f3f
+  mode: single
+- id: '1701903251724'
+  alias: Studio rolgordijn kiep sluiten
+  description: ''
+  trigger:
+  - device_id: 886118399754577db2fd3b5739588bc6
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+  condition: []
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.window_covering_device_16
+  mode: single
+- id: '1704230450666'
+  alias: afvalinfo
+  description: ''
+  trigger:
+  - platform: time
+    at: 05:00:00
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.afvalinfo_vandaag
+    data: {}
+  - if: []
+    then: []
+  mode: single
+- id: '1708225569324'
+  alias: PS5 gaat aan
+  description: ''
+  trigger:
+  - platform: device
+    device_id: b98eaa19083a23b2218d48d5ccb9556e
+    domain: select
+    entity_id: b8b11b067de145db70fe970c37411e17
+    type: current_option_changed
+    to: PS5
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.ps5
+    data: {}
+  mode: single
+- id: '1708260730116'
+  alias: ps5 gaat uit
+  description: ''
+  trigger:
+  - platform: device
+    device_id: b98eaa19083a23b2218d48d5ccb9556e
+    domain: select
+    entity_id: b8b11b067de145db70fe970c37411e17
+    type: current_option_changed
+    from: PS5
+  - platform: device
+    type: turned_off
+    device_id: 4f50a5f6b928df91713ecbfbbd620db5
+    entity_id: 26b2e96778e3d7e0c1de6d08a3486679
+    domain: remote
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id:
+      - input_boolean.ps5
+    data: {}
+  mode: single
+- id: '1708352100755'
+  alias: Slaapkamer Kledingkast lamp
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 91b66c7d4176063715a683e1b9fe2480
+    entity_id: 6a4bf67bc8a6d4b17a047a96735d6b51
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 6dee804035201e9b05ce86a0e4eec49e
+    entity_id: 901005e661d5f6e2f57c6b1d6bf856f3
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 6dee804035201e9b05ce86a0e4eec49e
+    entity_id: 901005e661d5f6e2f57c6b1d6bf856f3
+    domain: switch
+  mode: single
