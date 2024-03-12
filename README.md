@@ -2,6 +2,8 @@ This is the configuration of my Smart Home dashboard in Home Assistant, which I 
 
 ![demo](www/ui/screenshots/demo_dashboard_comprs.gif)
 
+Please be aware that some of the functionality shown in this video may differ from what is configured in the latest version of my repository
+
 My goal is to inspire others to create their own 3D floorplans and delve into the possibilities of home automation. I learned a lot from the floorplan config of Luke Vink. you should checkout his repo first:
 https://github.com/lukevink
 

@@ -2634,123 +2634,67 @@ views:
                   left: 50%
                   top: 50%
                   width: 100%
-          # - type: custom:mushroom-light-card
-          #   entity: light.bank
-          #   use_light_color: true
-          #   show_brightness_control: true
-          #   show_color_control: true
-          #   # collapsible_controls: true
-          #   # tap_action:
-          #   #   action: call-service
-          #   #   service: script.toggle_light_off
-          #   icon: hue:bulb-spot-hung
-          #   style:
-          #     left: 71%
-          #     top: 40%
-          #     width: 25%
+
 
           - type: conditional #slaapkamer_lamp
             conditions:
               - entity: input_text.lamptoggle
                 state: light.bank
             elements:
-              - type: custom:vertical-stack-in-card
-                style:
-                  left: 50%
-                  top: 50%
-                  width: 40%
-                cards:
-                  - type: custom:slider-button-card
-                    entity: light.bank
-                    slider:
-                      direction: left-right
-                      background: gradient
-                      use_state_color: true
-                      use_percentage_bg_opacity: false
-                      show_track: true
-                      toggle_on_click: false
-                      force_square: false
-                    show_name: true
-                    name: Bank
-                    show_state: false
-                    compact: true
-                    icon:
-                      show: true
-                      haptic: medium
-                      use_state_color: true
-                      tap_action:
-                        action: none
-                      icon: mdi:format-color-fill
-                    action_button:
-                      show: true
-                      icon: mdi:power-standby
-                      tap_action:
-                        action: call-service
-                        service: script.toggle_light_off
-                    card_mod:
-                      style: |
-                        ha-card {
-                          --ha-card-background: black;
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                          border-radius: 25px !important;
-                        }
-                  - type: "custom:light-entity-card"
-                    shorten_cards: false
-                    hide_header: true
-                    consolidate_entities: true
-                    persist_features: false
-                    brightness: false
-                    color_temp: false
-                    white_value: false
-                    color_picker: true
-                    smooth_color_wheel: true
-                    child_card: false
-                    show_slider_percent: false
-                    full_width_sliders: false
-                    entity: light.bank
-                    effects_list: false
-                    style:
-                      background: rgba(0, 0, 0, 0.7)
 
-                      height: 250px
+              - type: custom:more-info-card
+                entity: light.bank
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
+                style:
+                  left: 65%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
                 state: light.studio_bloom
             elements:
-              - type: custom:mushroom-light-card
+              - type: custom:more-info-card
                 entity: light.studio_bloom
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                tap_action:
-                  action: call-service
-                  service: script.toggle_light_off
-                icon: hue:bulb-spot-hung
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 58%
-                  top: 42%
-                  width: 25%
-
-          - type: conditional
-            conditions:
-              - entity: input_text.lamptoggle
-                state: light.eettafellamp_rechts
-              - entity: light.eettafellamp_rechts
-                state: "on"
-            elements:
-              - type: custom:mushroom-light-card
-                entity: light.eettafellamp_rechts
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                icon: hue:bulb-spot-hung
-                style:
-                  left: 50%
-                  top: 33%
-                  width: 25%
+                  left: 45%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
@@ -2758,39 +2702,61 @@ views:
               - entity: light.eettafellamp_links
                 state: "on"
             elements:
-              - type: custom:mushroom-light-card
+              - type: custom:more-info-card
                 entity: light.eettafellamp_links
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                icon: hue:bulb-spot-hung
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 50%
-                  top: 33%
-                  width: 25%
-
+                  left: 45%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
-                state: light.plafondspot_2
-              - entity: light.plafondspot_2
+                state: light.eettafellamp_rechts
+              - entity: light.eettafellamp_rechts
                 state: "on"
             elements:
-              - type: custom:mushroom-light-card
-                entity: light.plafondspot_2
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                tap_action:
-                  action: call-service
-                  service: script.toggle_light_off
-                icon: hue:bulb-spot
+              - type: custom:more-info-card
+                entity: light.eettafellamp_rechts
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 60%
-                  top: 40%
-                  width: 25%
+                  left: 50%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
@@ -2798,124 +2764,154 @@ views:
               - entity: light.plafondspot_1
                 state: "on"
             elements:
-              - type: custom:mushroom-light-card
+              - type: custom:more-info-card
                 entity: light.plafondspot_1
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                tap_action:
-                  action: call-service
-                  service: script.toggle_light_off
-                icon: hue:bulb-spot
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 60%
-                  top: 38%
-                  width: 25%
-
+                  left: 65%
+                  top: 35%
+                  width: 18%
+          - type: conditional
+            conditions:
+              - entity: input_text.lamptoggle
+                state: light.plafondspot_2
+              - entity: light.plafondspot_2
+                state: "on"
+            elements:
+              - type: custom:more-info-card
+                entity: light.plafondspot_2
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
+                style:
+                  left: 70%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
                 state: light.lightstrip_dressoir
 
             elements:
-              - type: custom:mushroom-light-card
+              - type: custom:more-info-card
                 entity: light.lightstrip_dressoir
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                tap_action:
-                  action: call-service
-                  service: script.toggle_light_off
-                icon: mdi:led-strip-variant
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 60%
-                  top: 40%
-                  width: 25%
+                  left: 65%
+                  top: 35%
+                  width: 18%
+
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
                 state: light.keukenstrip
 
             elements:
-              - type: custom:mushroom-light-card
+              - type: custom:more-info-card
                 entity: light.keukenstrip
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                tap_action:
-                  action: call-service
-                  service: script.toggle_light_off
-                icon: mdi:led-strip-variant
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 45%
-                  top: 40%
-                  width: 25%
+                  left: 25%
+                  top: 35%
+                  width: 18%
+
 
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
                 state: light.keukenspots
             elements:
-              - type: "custom:vertical-stack-in-card"
+              - type: custom:more-info-card
+                entity: light.keukenspots
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 29%
-                  top: 24%
-                  width: 25%
-                  background-color: "rgba(0, 0 , 0 , 0.6)"
-                  border-radius: 13px
-                cards:
-                  - type: tile
-                    entity: light.keukenspots
-                    show_entity_picture: false
-                    vertical: false
-                    hide_state: false
-                    features:
-                      - type: light-brightness
-                      - type: light-color-temp
+                  left: 25%
+                  top: 35%
+                  width: 18%
 
-                  # - type: custom:slider-button-card
-                  #   entity: light.keukenspots
-                  #   slider:
-                  #     direction: left-right
-                  #     background: gradient
-                  #     use_state_color: true
-                  #     use_percentage_bg_opacity: false
-                  #     show_track: true
-                  #     toggle_on_click: false
-                  #     force_square: false
-                  #   show_name: true
-                  #   show_state: false
-                  #   compact: true
-                  #   icon:
-                  #     show: true
-                  #     icon: mdi:brightness-5
-                  #     haptic: medium
-                  #     use_state_color: true
-                  #     tap_action:
-                  #       action: call-service
-                  #       service: input_boolean.toggle
-                  #       service_data:
-                  #         entity_id: input_boolean.colorwheel
-                  #   action_button:
-                  #     show: true
-                  #     icon: mdi:power-standby
-                  #     tap_action:
-                  #       action: call-service
-                  #       service: script.toggle_light_off
-                  #   style:
-                  #     border-radius: 13px
-                  #   card_mod:
-                  #     style: |
-                  #       ha-card {
-                  #         --ha-card-background: black;
-                  #         box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                  #         border-radius: 25px !important;
-                  #       }
-
-                  # "off":
 
           - type: conditional
             conditions:
@@ -2924,20 +2920,31 @@ views:
               - entity: light.kastlamp
                 state: "on"
             elements:
-              - type: custom:mushroom-light-card
+              - type: custom:more-info-card
                 entity: light.kastlamp
-                use_light_color: true
-                show_brightness_control: true
-                show_color_control: true
-                collapsible_controls: true
-                tap_action:
-                  action: call-service
-                  service: script.toggle_light_off
-                icon: hue:bulb-filament
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 60%
-                  top: 40%
-                  width: 25%
+                  left: 36%
+                  top: 35%
+                  width: 18%
+
 
           - type: conditional
             conditions:
@@ -5651,10 +5658,11 @@ views:
             elements:
               - type: custom:more-info-card
                 entity: light.wandlamp_schuur
+                title: " "
                 style:
                   left: 70%
                   top: 50%
-                  width: 18%
+                  width: 20%
                 card_mod:
                   style: |
                     ha-card {
@@ -5663,11 +5671,14 @@ views:
                       height: 550px;
                       background-color: rgba(10, 10, 10, 0.6) !important;
                     }
-                    state-card-toggle {
+                    .state-card-toggle {
                       display: none;
                     }
-                    card-header {
+                    .h1.card-header {
                       display: none;
+                    }
+                    name {
+                      font-weight: 400;
                     }
 
           - type: conditional
@@ -5677,30 +5688,30 @@ views:
               - entity: light.ledstrip_tuin
                 state: "on"
             elements:
-              - type: custom:vertical-stack-in-card
-                # horizontal: false
+              - type: custom:more-info-card
+                entity: light.ledstrip_tuin
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 76%
-                  top: 58%
+                  left: 64%
+                  top: 40%
                   width: 25%
-                  # height: 15%
-
-                  # box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6)
-                cards:
-                  - type: custom:mushroom-light-card
-                    entity: light.ledstrip_tuin
-                    use_light_color: true
-                    show_brightness_control: true
-                    show_color_control: true
-                    collapsible_controls: true
-                    tap_action:
-                      action: call-service
-                      service: script.toggle_light_off
-                    icon: mdi:led-strip-variant
-                    style:
-                      left: 45%
-                      top: 40%
-                      width: 25%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
