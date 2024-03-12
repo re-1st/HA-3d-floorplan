@@ -1,0 +1,64 @@
+Custom Dark:
+  # ha-card-border-radius: 15px
+  ha-card-box-shadow: "1px 1px 2px 0px rgba(0,0,0,0)"
+  ha-card-background: 'rgba(0,0,0,0)'
+  ha-card-background-color: 'rgba(0,0,0,0)'
+
+  paper-card-h1-text-color: '#000000'
+
+
+
+  primary-color: "#368ed1"
+  light-primary-color: "#19BAFF"
+  graph-color: var(--primary-color)
+  primary-background-color: "#3c3f40"
+  secondary-background-color: 'rgba(0,0,0,0.0)'
+  divider-color: "#7f859d"
+  disabled-color: "#666666"
+
+  primary-text-color: "#e7e7e7"
+  secondary-text-color: "#e7e7e7"
+  text-primary-color: "#e7e7e7"
+  disabled-text-color: "#e7e7e7"
+
+  sidebar-icon-color: var(--primary-color)
+  sidebar-text-color: "#e7e7e7"
+  sidebar-background-color: "#323536"
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: var(--light-primary-color)
+  sidebar-selected-text-color: "#e7e7e7"
+
+  state-icon-color: var(--primary-color)
+  state-icon-active-color: "#ff9000"
+  state-icon-unavailable-color: var(--disabled-text-color)
+
+  paper-slider-knob-color: "#a7a7a7"
+  paper-slider-knob-start-color: "#a7a7a7"
+  paper-slider-pin-color: "#a7a7a7"
+  paper-slider-active-color: "#a7a7a7"
+  paper-slider-secondary-color: "#a7a7a7"
+  label-badge-background-color: "#292a2e"
+  label-badge-text-color: "#e7e7e7"
+  label-badge-red: var(--light-primary-color)
+
+  paper-card-background: 'rgba(0,0,0,0)'
+  paper-card-background-color: 'rgba(0,0,0,0)'
+  paper-listbox-background-color: 'rgba(0,0,0,0)'
+
+  paper-toggle-button-checked-button-color: var(--primary-color)
+  paper-toggle-button-checked-bar-color: var(--light-primary-color)
+  paper-toggle-button-unchecked-button-color: var(--disabled-color)
+  paper-toggle-button-unchecked-bar-color: "#333333"
+
+  switch-checked-color: var(--paper-toggle-button-checked-button-color)
+  switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
+  switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
+  switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
+  ha-card-border-width: "0px"    
+  table-row-background-color: 'rgba(0,0,0,0)'
+  table-row-alternative-background-color: 'rgba(0,0,0,0)'
+  card-background-color: 'rgba(0,0,0,0)'
+
+  # mdc-ripple-color: white
+  # mdc-ripple-press-opacity: 0.5
+  # mdc-ripple-transition: 1s

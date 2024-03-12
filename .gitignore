@@ -1,0 +1,69 @@
+### HomeAssistant ###
+# Files with personal details
+*.crt
+*.csr
+*.key
+*.token
+.google.token
+.uuid
+
+.cloud/
+.well-known/
+.vscode/
+nodered/
+blueprints/
+esphome/
+media/
+nest/
+o365_storage/
+eufy_security/
+.storage/
+.ssh/
+tts/
+# Development files
+custom_components/
+www/audio/
+www/ui/floorplan/router/
+www/fx/
+www/tapo_control
+
+google_calendars.yaml
+home-assistant.db
+home-assistant_v2.db
+home-assistant_v2.db-*
+html5_push_registrations.conf
+ip_bans.yaml
+secrets.yaml
+tradfri.conf
+archived.yaml
+MUSHROOM.txt
+MUSHROOM.yAml
+webostv.conf
+known_devices.yaml
+rtsp2webrtc_v5_amd64
+scripts copy.yaml
+groups.yaml
+snippets.yaml
+zigbee.db
+config.code-workspace
+customize.yaml
+scenes.yaml
+
+# Temporary files
+*.db-journal
+*.pid
+go2rtc-1.8.5
+
+# automatically downloaded dependencies
+deps
+lib
+
+
+# Log files
+home-assistant.log
+ozw_log.txt
+home-assistant.log.1
+home-assistant.log.fault
+
+
+### END ###

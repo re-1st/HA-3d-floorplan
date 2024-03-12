@@ -1,0 +1,58 @@
+Dark Blue:
+  ha-card-border-radius: 2px
+  ha-card-box-shadow: "1px 1px 2px 0px rgba(0,0,0,0.3)"
+
+  primary-color: "#368ed1"
+  light-primary-color: "#19BAFF"
+  graph-color: var(--primary-color)
+  primary-background-color: "#3c3f40"
+  secondary-background-color: 'rgba(0,0,0,0.0)'
+  divider-color: "#292a2e"
+  disabled-color: "#666666"
+
+  primary-text-color: "#FBFBFB"
+  secondary-text-color: var(--primary-color)
+  text-primary-color: var(--primary-text-color)
+  disabled-text-color: "#7A7D90"
+
+  sidebar-icon-color: var(--primary-color)
+  sidebar-text-color: var(--primary-text-color)
+  sidebar-background-color: "#323536"
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: var(--light-primary-color)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+
+  state-icon-color: var(--primary-color)
+  state-icon-active-color: "#ffdd00"
+  state-icon-unavailable-color: var(--disabled-text-color)
+
+  paper-slider-knob-color: var(--primary-color)
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: var(--paper-slider-knob-color)
+  paper-slider-secondary-color: var(--light-primary-color)
+  label-badge-background-color: var(--divider-color)
+  label-badge-text-color: var(--primary-text-color)
+  label-badge-red: var(--light-primary-color)
+
+  paper-card-background-color: "#4d5052"
+  paper-listbox-background-color: var(--primary-background-color)
+
+  paper-toggle-button-checked-button-color: var(--primary-color)
+  paper-toggle-button-checked-bar-color: var(--light-primary-color)
+  paper-toggle-button-unchecked-button-color: var(--disabled-color)
+  paper-toggle-button-unchecked-bar-color: "#333333"
+
+  switch-checked-color: var(--paper-toggle-button-checked-button-color)
+  switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
+  switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
+  switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
+
+  table-row-background-color: var(--divider-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  card-background-color: var(--primary-background-color)
+
+
+  mdc-ripple-color: white
+  mdc-ripple-press-opacity: 0.5
+  mdc-ripple-transition: 3s

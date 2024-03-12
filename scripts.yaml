@@ -1,0 +1,1043 @@
+kaars_aan:
+  alias: kaars aan
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kaarsen
+      command: 'on'
+    target:
+      device_id: 2dff42c9b6beb8bee75cba1080a18e90
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: remote.send_command
+    target:
+      device_id: 3cce5bd0887233df3447a9e1ed32686e
+    data:
+      device: kaars_2
+      command: 'on'
+  mode: single
+  icon: mdi:candle
+kaars_uit:
+  alias: kaars uit
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kaarsen
+      command: 'off'
+    target:
+      device_id: 2dff42c9b6beb8bee75cba1080a18e90
+  - service: remote.send_command
+    target:
+      device_id: 3cce5bd0887233df3447a9e1ed32686e
+    data:
+      device: kaars_2
+      command: 'off'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  mode: single
+  icon: mdi:candle
+kerstverlichting_uit:
+  alias: kerstverlichting uit
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kerstverlichting_01
+      command: 'off'
+    target:
+      entity_id: remote.broadlink_woonkamer_remote
+  mode: single
+  icon: mdi:candle
+kerstverlichting_aan:
+  alias: kerstverlichting aan
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kerstverlichting_01
+      command: 'on'
+    target:
+      entity_id: remote.broadlink_woonkamer_remote
+  mode: single
+  icon: mdi:candle
+bewateren_5_min:
+  alias: 'bewateren 5 Min. '
+  sequence:
+  - device_id: 3ae0c25fcd5649749cead65f9a19298e
+    domain: switch
+    entity_id: switch.water_control
+    type: turn_on
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: timer.start
+    data:
+      duration: 00:05:00:00
+    target:
+      entity_id: timer.bewatering
+  - device_id: 3ae0c25fcd5649749cead65f9a19298e
+    domain: switch
+    entity_id: switch.water_control
+    type: turn_off
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.tuin_bewatering
+    data:
+      option: Selecteer
+  icon: mdi:watering-can
+  mode: single
+babycam:
+  alias: babycam tom
+  sequence:
+  - service: browser_mod.popup
+    data:
+      size: wide
+      content:
+        type: custom:webrtc-camera
+        url: rtsp://cameratom:Banaan10@192.168.2.70:554/stream1
+        mute: false
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 35
+      milliseconds: 0
+  - service: browser_mod.close_popup
+    data: {}
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  mode: single
+  icon: mdi:baby
+voordeurcam:
+  alias: Voordeurcam
+  sequence:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.tablet_s7_screen
+  - service: browser_mod.popup
+    data:
+      size: wide
+      content:
+        type: custom:webrtc-camera
+        entity: camera.voordeur_cam_hd_stream
+        mute: true
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  mode: single
+  icon: mdi:door
+bewateren_10_min:
+  alias: bewateren 10 Min.
+  sequence:
+  - device_id: 3ae0c25fcd5649749cead65f9a19298e
+    domain: switch
+    entity_id: switch.water_control
+    type: turn_on
+  - service: timer.start
+    data:
+      duration: 00:10:00
+    target:
+      entity_id:
+      - timer.bewatering
+      - timer.bewatering
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 3ae0c25fcd5649749cead65f9a19298e
+    entity_id: switch.water_control
+    domain: switch
+  icon: mdi:watering-can
+  mode: single
+bewateren_15_min:
+  alias: bewateren 15 Min.
+  sequence:
+  - device_id: 3ae0c25fcd5649749cead65f9a19298e
+    domain: switch
+    entity_id: switch.water_control
+    type: turn_on
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - service: timer.start
+    data:
+      duration: 00:15:00:00
+    target:
+      entity_id: timer.bewatering
+  - device_id: 3ae0c25fcd5649749cead65f9a19298e
+    domain: switch
+    entity_id: switch.water_control
+    type: turn_off
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.tuin_bewatering
+    data:
+      option: Selecteer
+  icon: mdi:watering-can
+  mode: single
+tuinirrigatie_uitzetten:
+  alias: tuinirrigatie uitzetten
+  sequence:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.water_control
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: switch.turn_off
+    target:
+      entity_id: switch.water_control
+  - service: timer.finish
+    target:
+      entity_id: timer.bewatering
+  mode: single
+  icon: mdi:close-thick
+stop_ffmpeg:
+  alias: stop ffmpeg
+  sequence:
+  - service: ffmpeg.stop
+    target:
+      entity_id: binary_sensor.ffmpeg_noise
+    data:
+      entity_id: ffmpeg_baby_noise_tom
+  mode: single
+shutdown_pc:
+  alias: Shutdown pc
+  sequence:
+  - service: hassio.addon_stdin
+    data:
+      addon: core_rpc_shutdown
+      input: PC-BAS
+  mode: single
+  icon: mdi:desktop-classic
+kaars_aan_wc_2:
+  alias: kaars aan wc
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kaarsen
+      command: 'on'
+    target:
+      device_id: b37f5affdc7da0ba5a3f3412fcdc997f
+  mode: single
+  icon: mdi:candle
+kaars_uit_wc:
+  alias: kaars uit wc
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kaarsen
+      command: 'off'
+    target:
+      device_id: b37f5affdc7da0ba5a3f3412fcdc997f
+  mode: single
+  icon: mdi:candle
+toggle_light:
+  alias: toggle light
+  sequence:
+  - service: light.toggle
+    target:
+      entity_id: '{{ states(''input_text.lamptoggle'') }}'
+    data:
+      brightness_pct: 58
+  mode: single
+toggle_light_with_text_input:
+  alias: toggle light with text input
+  sequence:
+  - service: light.turn_on
+    target:
+      entity_id: '{{ states(''input_text.lamptoggle'') }}'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_text.lamptoggle
+      state: none
+  mode: restart
+  icon: mdi:switch
+playlist_next_track:
+  alias: playlist next track
+  sequence:
+  - service: media_player.media_stop
+    target:
+      entity_id: media_player.woonkamer_audio
+  mode: single
+  icon: mdi:skip-next
+playlist_turn_off:
+  alias: playlist turn off
+  sequence:
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.woonkamer_audio
+  mode: single
+  icon: mdi:power-standby
+start_timer:
+  alias: Start BBQ-timer
+  sequence:
+  - service: timer.start
+    data:
+      duration: '{{ states(''input_number.bbq_set_timer'') | int * 60 }}'
+    target:
+      entity_id: timer.bbq_timer
+  mode: single
+  icon: mdi:timer
+bbq_timer_cancel:
+  alias: bbq timer cancel
+  sequence:
+  - service: timer.cancel
+    target:
+      entity_id: timer.bbq_timer
+  mode: single
+  icon: mdi:timer-off
+bbq_min_is_max:
+  alias: bbq min is max
+  sequence:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.bbq_min_temp
+    data:
+      value: '{{ states(''input_number.bbq_max_temp'') | float - 10 }}'
+  mode: single
+bbq_max_is_min:
+  alias: bbq max is min
+  sequence:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.bbq_max_temp
+    data:
+      value: '{{ states(''input_number.bbq_min_temp'') | float + 10  }}'
+  mode: single
+'1636366473974':
+  alias: S20 alert BBQ1
+  sequence:
+  - device_id: 4904ee2d7b3b69c9d6f1343594a10006
+    domain: mobile_app
+    type: notify
+    message: BBQ Temp is reached
+    title: BBQ ALERT
+  mode: single
+  icon: mdi:grill
+vacuum_follow_path:
+  mode: single
+  alias: Vacuum follow path
+  fields:
+    path:
+      name: Path
+    entity_id:
+      name: Vacuum entity
+  sequence:
+  - repeat:
+      count: '{{ path | length }}'
+      sequence:
+      - choose:
+        - conditions: '{{ mode == ''individual'' }}'
+          sequence:
+          - service: '{{ service }}'
+            data:
+              entity_id: '{{ entity_id }}'
+              x_coord: '{{ path[repeat.index-1][0] }}'
+              y_coord: '{{ path[repeat.index-1][1] }}'
+      - choose:
+        - conditions: '{{ mode == ''send_command'' }}'
+          sequence:
+          - service: '{{ service }}'
+            data:
+              entity_id: '{{ entity_id }}'
+              command: app_goto_target
+              params: '{{ path[repeat.index-1] }}'
+      - wait_template: '{{ is_state(entity_id, ''cleaning'') }}'
+        timeout: 00:00:30
+        continue_on_timeout: false
+      - delay: 00:00:01
+      - wait_template: '{{ is_state(entity_id, ''idle'') or is_state(entity_id, ''paused'')
+          }}'
+        timeout: 00:05:00
+        continue_on_timeout: false
+toggle_light_off:
+  alias: toggle light off
+  sequence:
+  - service: light.turn_off
+    target:
+      entity_id: '{{ states(''input_text.lamptoggle'') }}'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_text.lamptoggle
+      state: none
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.lamptoggle
+    data:
+      value: none
+  mode: restart
+  icon: mdi:switch
+dressledje_aan:
+  alias: dressledje aan
+  sequence:
+  - service: remote.send_command
+    data:
+      device: dressoir_ledstrip
+      command: 'on'
+    target:
+      device_id: 3cce5bd0887233df3447a9e1ed32686e
+  mode: single
+  icon: mdi:led-on
+dressledje_uit:
+  alias: dressledje uit
+  sequence:
+  - service: remote.send_command
+    data:
+      device: dressoir_ledstrip
+      command: 'off'
+    target:
+      device_id: 3cce5bd0887233df3447a9e1ed32686e
+  mode: single
+  icon: mdi:led-off
+create_light_snapshot:
+  alias: Create light snapshot
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: snapshot_before_alert
+      snapshot_entities: light.studio_go_links,  light.studio_go_rechts, light.eettafellamp_links,light.eettafellamp_rechts,
+        light.tuinsokkel_links, light.tuinsokkel_rechts
+  mode: single
+flash_red:
+  alias: Flash red
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: deur_before
+      snapshot_entities: light.studio_go_rechts, light.studio_go_links, light.bank,
+        light.eettafellamp_links, light.eettafellamp_rechts, light.studio_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      color_name: red
+      transition: 0.1
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.bank
+      - light.studio_bloom
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+      - light.studio_bloom
+      - light.bank
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+      - light.bank
+      - light.studio_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.bank
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+      - light.studio_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - service: scene.turn_on
+    target:
+      entity_id: scene.deur_before
+    metadata: {}
+  mode: single
+  icon: mdi:home-alert-outline
+flash_blue:
+  alias: Flash blue
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: deur_before
+      snapshot_entities: light.studio_go_rechts, light.studio_go_links, light.bank,
+        light.eettafellamp_links, light.eettafellamp_rechts, light.studio_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      color_name: blue
+      transition: 0.1
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.bank
+      - light.studio_bloom
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+      - light.studio_bloom
+      - light.bank
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+      - light.bank
+      - light.studio_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id:
+      - light.studio_go_rechts
+      - light.studio_go_links
+      - light.bank
+      - light.eettafellamp_links
+      - light.eettafellamp_rechts
+      - light.studio_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - service: scene.turn_on
+    target:
+      entity_id: scene.deur_before
+    metadata: {}
+  mode: single
+  icon: mdi:home-alert-outline
+babycam_2:
+  alias: babycam bram
+  sequence:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.tablet_s7_screen
+  - service: browser_mod.popup
+    data:
+      size: wide
+      content:
+        type: custom:webrtc-camera
+        url: rtsp://camera2_bram:Banaan10@192.168.2.41:554/stream1
+        mute: false
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 35
+      milliseconds: 0
+  - service: browser_mod.close_popup
+    data: {}
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  mode: single
+  icon: mdi:baby
+zet_luchtventilatie_op_max:
+  alias: Zet luchtventilatie op max
+  sequence:
+  - service: fan.set_percentage
+    data:
+      percentage: 100
+    target:
+      entity_id: fan.open_duco
+  mode: single
+  icon: mdi:air-filter
+stop_ffmpeg_bram:
+  alias: stop ffmpeg (bram)
+  sequence:
+  - service: ffmpeg.stop
+    target:
+      entity_id: binary_sensor.ffmpeg_noise
+    data:
+      entity_id: binary_sensor.ffmpeg_baby_noise_bram
+  mode: single
+bbq_test_4_video:
+  alias: bbq test 4 video
+  sequence:
+  - service: input_number.set_value
+    data:
+      value: 23
+    target:
+      entity_id:
+      - input_number.bbq_test1
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 9
+      milliseconds: 0
+  - service: input_number.set_value
+    data:
+      value: 22
+    target:
+      entity_id:
+      - input_number.bbq_test2
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - repeat:
+      count: '200'
+      sequence:
+      - service: input_number.increment
+        data: {}
+        target:
+          entity_id: input_number.bbq_test1
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 6
+          milliseconds: 0
+      - service: input_number.increment
+        data: {}
+        target:
+          entity_id: input_number.bbq_test2
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 4
+          milliseconds: 0
+      - service: input_number.increment
+        data: {}
+        target:
+          entity_id: input_number.bbq_test1
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 2
+          milliseconds: 0
+      - service: input_number.increment
+        data: {}
+        target:
+          entity_id: input_number.bbq_test1
+  - service: input_number.set_value
+    data:
+      value: 23
+    target:
+      entity_id:
+      - input_number.bbq_test1
+  mode: single
+  icon: hue:room-bbq
+bbq_test_4_zero:
+  alias: bbq test 4 zero
+  sequence:
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.bbq_test1
+      - input_number.bbq_test2
+  mode: single
+  icon: hue:room-bbq
+sinterklaas_liedjes:
+  alias: sinterklaas liedjes
+  sequence:
+  - service: spotcast.start
+    data:
+      entity_id: media_player.woonkamer_audio
+      search: sinterklaas liedjes
+      start_volume: 25
+  mode: single
+wc_relaxing_music:
+  alias: wc relaxing music
+  sequence:
+  - service: spotcast.start
+    data:
+      entity_id: media_player.nest_mini_wc
+      start_volume: 15
+      uri: spotify:playlist:45l1vFBZmVautx8owcvamD
+  mode: single
+  icon: hue:scene-relax
+wc_led_aan:
+  alias: 'wc led uit '
+  sequence:
+  - service: remote.send_command
+    data:
+      device: wc_led
+      command: 'off'
+    target:
+      device_id: b37f5affdc7da0ba5a3f3412fcdc997f
+  mode: single
+  icon: mdi:led-off
+wc_led_aan_2:
+  alias: wc led aan
+  sequence:
+  - service: remote.send_command
+    data:
+      device: wc_led
+      command: 'on'
+    target:
+      device_id: b37f5affdc7da0ba5a3f3412fcdc997f
+  mode: single
+  icon: mdi:led-strip
+kerst24_aan:
+  alias: kerst23 aan
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kerst23
+      command: 'on'
+    target:
+      device_id: 2dff42c9b6beb8bee75cba1080a18e90
+  mode: single
+kerst24_uit:
+  alias: kerst24 uit
+  sequence:
+  - service: remote.send_command
+    data:
+      device: kerst23
+      command: 'off'
+    target:
+      device_id: 2dff42c9b6beb8bee75cba1080a18e90
+  mode: single
+actie_sfeer:
+  alias: Actie sfeer
+  use_blueprint:
+    path: homeassistant/confirmable_notification.yaml
+    input:
+      notify_device: 4904ee2d7b3b69c9d6f1343594a10006
+      title: Bevestig
+      message: Hello halloo
+      confirm_text: Dankje
+      confirm_action:
+      - service: scene.turn_on
+        data: {}
+        target:
+          entity_id: scene.studio_sfeer_2
+  mode: single
+voordeurcammove_1:
+  alias: Voordeurcammove 1
+  sequence:
+  - device_id: a3cee44c4374552d704dc41f8fb597ab
+    domain: select
+    entity_id: select.voordeur_cam_move_to_preset
+    type: select_first
+  mode: single
+voordeurcammove_2:
+  alias: Voordeurcammove 2
+  sequence:
+  - device_id: a3cee44c4374552d704dc41f8fb597ab
+    domain: select
+    entity_id: select.voordeur_cam_move_to_preset
+    type: select_last
+  mode: single
+purge_database:
+  alias: Purge Database
+  sequence:
+  - service: recorder.purge
+    data:
+      repack: true
+      apply_filter: true
+      keep_days: 100
+  mode: single
+  icon: mdi:trash-can-outline
+alarm:
+  alias: Alarm
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: music
+      media_content_id: /local/audio/alarm/duitsalarm.mp3
+    target:
+      entity_id: media_player.audio_nest
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: media_player.volume_set
+    target:
+      entity_id:
+      - media_player.google_assistent_speaker
+      - media_player.audio_nest
+      - media_player.nest_mini_wc
+      - media_player.tablet
+    data:
+      volume_level: 1
+  - service: media_player.play_media
+    data:
+      media_content_type: music
+      media_content_id: /local/audio/alarm/hond.mp3
+    target:
+      entity_id: media_player.google_assistent_speaker
+  - service: media_player.play_media
+    data:
+      media_content_type: music
+      media_content_id: /local/audio/hond.mp3
+    target:
+      entity_id: media_player.nest_mini_wc
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+    target:
+      entity_id:
+      - light.woonkamer
+      - light.tuincompleet
+      - light.gang_boven
+      - light.eettafel
+  mode: single
+zet_q90_naar_game_mode:
+  alias: Zet q90 naar game mode
+  sequence:
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_HOME
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_LEFT
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_LEFT
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_LEFT
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_LEFT
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_LEFT
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_LEFT
+    target:
+      entity_id: remote.q90
+  - service: remote.send_command
+    data:
+      device: 4f50a5f6b928df91713ecbfbbd620db5
+      command: KEY_UP
+    target:
+      entity_id: remote.q90
+  mode: single
+  icon: mdi:gamepad-outline
+tablet_uitzetten:
+  alias: tablet close popup
+  sequence:
+  - service: browser_mod.close_popup
+    data: {}
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  mode: single
+  icon: mdi:tablet
+voordeur_laat_cam_zien_op_tablet:
+  alias: voordeur laat cam zien op tablet
+  sequence:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.tablet_s7_screen
+  - service: browser_mod.popup
+    data:
+      size: wide
+      content:
+        type: custom:webrtc-camera
+        entity: camera.voordeur_cam_hd_stream
+        mute: true
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 35
+      milliseconds: 0
+  - service: browser_mod.close_popup
+    data: {}
+    target:
+      device_id: 95994e3bfcd9e7758c6250dd7f0f14c9
+  mode: single
+  icon: mdi:door
+'1695767977053':
+  alias: Play Random Media
+  use_blueprint:
+    path: Talvish/play_random_media.yaml
+lighteffect:
+  alias: Lighteffect
+  sequence:
+  - service: scene.create
+    data:
+      snapshot_entities:
+      - light.hue_gradient_lightstrip_1
+      - light.studio_go_links
+      scene_id: snapshot_voordeurbel_lampen
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+    target:
+      device_id:
+      - f87db1553a9fb67ad077e17c0162880f
+      - 192dbaa433dc4989b6734dd2721fc059
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      device_id:
+      - f87db1553a9fb67ad077e17c0162880f
+      - 192dbaa433dc4989b6734dd2721fc059
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      device_id:
+      - f87db1553a9fb67ad077e17c0162880f
+      - 192dbaa433dc4989b6734dd2721fc059
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.snapshot_voordeurbel_lampen
+  mode: single
+deurbel_klok:
+  alias: Deurbel klok
+  sequence:
+  - service: automation.turn_off
+    data:
+      stop_actions: true
+    target:
+      entity_id: automation.la_metric_status_carrroussel
+  - service: lametric.message
+    data:
+      cycles: 1
+      icon_type: none
+      priority: info
+      device_id: bb39f9b8865dd5c3bb4775d6fa1542a1
+      message: Deurbel
+      icon: '54924'
+      sound: alarm5
+  mode: single
