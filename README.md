@@ -30,3 +30,6 @@ I've made this repository available to offer a comprehensive overview of my Smar
 Heavily inspired by the awesome dashboard of Luke Vink: https://github.com/lukevink
 
 A huge thank you to the wonderful Home Assistant community, always ready to support each other!
+
+**Updates**
+13-03-2024: I'm changing my light pop-ups with the custom 'more-info card'. Despite it is a custom card It is standard HA functionality and it has way better responsiveness when used on a tabletm than all other cards I tested.

@@ -5711,7 +5711,7 @@ views:
                 style:
                   left: 64%
                   top: 40%
-                  width: 25%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
@@ -5719,68 +5719,30 @@ views:
               - entity: light.hue_discover_outdoor_wall_1
                 state: "on"
             elements:
-              - type: custom:vertical-stack-in-card
-                # horizontal: false
+              - type: custom:more-info-card
+                entity: light.hue_discover_outdoor_wall_1
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 76%
-                  top: 58%
+                  left: 25%
+                  top: 35%
                   width: 18%
-                  # height: 15%
-                  border-radius: 13px
-
-                  # box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6)
-                cards:
-                  - type: custom:slider-button-card
-                    entity: light.hue_discover_outdoor_wall_1
-                    slider:
-                      direction: left-right
-                      background: gradient
-                      use_state_color: true
-                      use_percentage_bg_opacity: false
-                      show_track: true
-                      toggle_on_click: false
-                      force_square: false
-                    show_name: true
-                    name: Buitenkeuken
-                    show_state: false
-                    compact: true
-                    icon:
-                      show: true
-                      haptic: medium
-                      use_state_color: true
-                      tap_action:
-                        action: none
-                      icon: mdi:format-color-fill
-                    action_button:
-                      show: true
-                      icon: mdi:power-standby
-                      tap_action:
-                        action: call-service
-                        service: script.toggle_light_off
-                    card_mod:
-                      style: |
-                        ha-card {
-                          --ha-card-background: black;
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                          border-radius: 25px !important;
-                        }
-                  - type: "custom:light-entity-card"
-                    shorten_cards: false
-                    hide_header: true
-                    consolidate_entities: true
-                    persist_features: false
-                    brightness: false
-                    color_temp: false
-                    white_value: false
-                    color_picker: true
-                    smooth_color_wheel: true
-                    child_card: false
-                    show_slider_percent: false
-                    full_width_sliders: false
-                    entity: light.hue_discover_outdoor_wall_1
-                    effects_list: false
-                    style:
-                      background: rgba(0, 0, 0, 0.7)
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
@@ -5788,44 +5750,30 @@ views:
               - entity: light.hue_wandlamp
                 state: "on"
             elements:
-              - type: custom:slider-button-card
+              - type: custom:more-info-card
                 entity: light.hue_wandlamp
-                slider:
-                  direction: left-right
-                  background: gradient
-
-                  use_state_color: false
-                  use_percentage_bg_opacity: true
-                  show_track: true
-                  toggle_on_click: false
-                  force_square: false
-                show_name: true
-                name: Wandlamp tuin
-                show_state: false
-                compact: true
-                icon:
-                  show: true
-                  icon: mdi:power-standby
-                  tap_action:
-                    action: toggle
-                  action_button:
-                    show: true
-                    icon: mdi:power-standby
-                    tap_action:
-                      action: call-service
-                      service: script.toggle_light_off
-                style:
-                  left: 30%
-                  top: 25%
-                  width: 18%
-                  border-radius: 13px
+                title: " "
                 card_mod:
                   style: |
                     ha-card {
-                      --ha-card-background: black;
-                      box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                      border-radius: 25px !important;
+                      border-radius: 13% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
                     }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
+                style:
+                  left: 25%
+                  top: 35%
+                  width: 18%
   #############################################################################################################################################
   #                                                                                                                                           #
   #                                                               1FL NEW                                                                    #
