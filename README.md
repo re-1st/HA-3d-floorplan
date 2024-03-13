@@ -15,11 +15,11 @@ I've made this repository available to offer a comprehensive overview of my Smar
 **Floorplan overviews**
 The 3d design of the floorplan is created in Skecthup and rendered with Enscape. Then i edited them in Photoshop. The first idea was to create the cards with styling in the yaml file. However after endless fiddling with CSS, I realized that the cards are actually static within the design, allowing me to incorporate them directly into the background. As a result, all the cards simply float above the design.
 
-![demo](www/ui/floorplan/0fl/floorplanday.jpg)
+<img src="www/ui/floorplan/0fl/floorplanday.jpg" width="50%" alt="demo">
 
-![demo](www/ui/floorplan/tuin/tuinplan_day.jpg)
+<img src="www/ui/floorplan/tuin/tuinplan_day.jpg" width="50%" alt="demo">
 
-![demo](www/ui/floorplan/1fl/1fl_dayview.jpg)
+<img src="www/ui/floorplan/1fl/1fl_dayview.jpg" width="50%" alt="demo">
 
 
 **Configuration**
