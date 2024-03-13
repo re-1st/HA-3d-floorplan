@@ -12,6 +12,16 @@ https://github.com/lukevink
 I've made this repository available to offer a comprehensive overview of my Smart Home configuration in Home Assistant. It can serve as a guide for those looking to build their own dashboard. However, as much of the configuration relies on custom integrations, simply copying the entire code may not yield identical results. If any part of this configuration is unclear or requires further explanation, please do not hesitate to reach out. 
 
 
+**Floorplan overviews**
+The 3d design of the floorplan is created in Skecthup and rendered with Enscape. Then i edited them in Photoshop. The first idea was to create the cards with styling in the yaml file. However after endless fiddling with CSS, I realized that the cards are actually static within the design, allowing me to incorporate them directly into the background. As a result, all the cards simply float above the design.
+
+![demo](www/ui/floorplan/0fl/floorplanday.jpg)
+
+![demo](www/ui/floorplan/tuin/tuinplan_day.jpg)
+
+![demo](www/ui/floorplan/1fl/1fl_dayview.jpg)
+
+
 **Configuration**
 - Home assistant (Yaml mode)
 
