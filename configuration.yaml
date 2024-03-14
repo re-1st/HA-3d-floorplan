@@ -12,6 +12,8 @@ lovelace:
   resources:
     - url: /hacsfiles/lovelace-more-info-card/more-info-card.js
       type: module
+    - url: /local/custom_lovelace/hue-like-light-card.js
+      type: module
     - url: /hacsfiles/my-cards/my-cards.js
       type: module
     - url: /hacsfiles/kiosk-mode/kiosk-mode.js
@@ -64,10 +66,7 @@ lovelace:
       url: /hacsfiles/list-card/list-card.js
     - type: module
       url: /hacsfiles/tv-card/tv-card.js
-    - url: /hacsfiles/hass-hue-icons/hass-hue-icons.js
-      type: module
-    - url: /hacsfiles/Bubble-Card/bubble-pop-up.js?v=0.0.0
-      type: module
+
 
 
 

@@ -4,12 +4,13 @@ This is the configuration of my Smart Home dashboard in Home Assistant, which I 
 
 Please be aware that some of the functionality shown in this video may differ from what is configured in the latest version of my repository
 
-My goal is to inspire others to create their own 3D floorplans and delve into the possibilities of home automation. I learned a lot from the floorplan config of Luke Vink. you should checkout his repo first:
-https://github.com/lukevink
+My goal is to inspire others to create their own 3D floorplans and delve into the possibilities of home automation. If any part of this configuration is unclear or requires further explanation, please do not hesitate to reach out. 
 
-**Disclaimer**:  I am  a hobbyist with no programming background. The day I started this project i had never opened a yaml file or skecthup project.  While this  may be encouraging for other non-skilled people trying to build their own floorplan,  I am certain that much of my YAML, CSS, JSON, etc., could be constructed better or more efficiently.  I welcome any suggestions that could improve my work. 
+Please note that most of the stuff I did, I learned/copied from the floorplan config of Luke Vink.  you should checkout his repo first. It  has a good explaination on how the yaml code works in combination with config template card.
+https://github.com/lukevink 
 
-I've made this repository available to offer a comprehensive overview of my Smart Home configuration in Home Assistant. It can serve as a guide for those looking to build their own dashboard. However, as much of the configuration relies on custom integrations, simply copying the entire code may not yield identical results. If any part of this configuration is unclear or requires further explanation, please do not hesitate to reach out. 
+**Disclaimer**:  I am  a hobbyist with no programming background.  I am certain that much of my YAML, CSS, JSON, etc., could be constructed better or more efficiently.  I welcome any suggestions that could improve my work. 
+I've made this repository available to offer a comprehensive overview of my Smart Home configuration in Home Assistant. However much of the configuration relies on custom integrations, simply copying the entire code may not yield identical results. 
 
 
 **Floorplan overviews**
