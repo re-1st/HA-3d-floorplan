@@ -11,6 +11,7 @@ https://github.com/lukevink
 
 
 **Floorplan overviews**
+
 The 3d design of the floorplan is created in Skecthup and rendered with Enscape. Then i edited them in Photoshop. 
 
 The first idea was to create the cards with styling in the yaml file. However after endless fiddling with CSS, I realized that the cards are actually static within the design, allowing me to incorporate them directly into the background. As a result, all the cards simply float above the design.
@@ -22,6 +23,7 @@ The first idea was to create the cards with styling in the yaml file. However af
 <img src="www/ui/floorplan/1fl/1fl_dayview.jpg" width="50%" alt="demo">
 
 **PSD Template**
+
 Photoshop template for to easily generate image files. e.g. for colour synced lights: [Floorplan Template.psd ](https://github.com/re-1st/HA-3d-floorplan/blob/master/www/ui/floorplan/floorplan%20lights%20template.zip)
 
 **Configuration**
@@ -37,13 +39,16 @@ Photoshop template for to easily generate image files. e.g. for colour synced li
 **Hardware**
 - Galaxy Tab s7+
 
-**Disclaimer**:  I am  a hobbyist with no programming background.  I am certain that much of my YAML, CSS, JSON, etc., could be constructed better or more efficiently.  I welcome any suggestions that could improve my work. 
+**Disclaimer**
+I am  a hobbyist with no programming background.  I am certain that much of my YAML, CSS, JSON, etc., could be constructed better or more efficiently.  I welcome any suggestions that could improve my work. 
 I've made this repository available to offer a comprehensive overview of my Smart Home configuration in Home Assistant. However much of the configuration relies on custom integrations, simply copying the entire code may not yield identical results. 
 
 **Credits**
+
 Heavily inspired by the awesome dashboard of Luke Vink: https://github.com/lukevink
 
 A huge thank you to the wonderful Home Assistant community, always ready to support each other!
 
 **Updates**
+
 13-03-2024: I'm changing my light pop-ups with the custom 'more-info card'. Despite it is a custom card, It is standard HA functionality and it has way better responsiveness than all other cards I tested when using a toucscreen (tablet).
