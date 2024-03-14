@@ -1,6 +1,7 @@
 This is the configuration of my Smart Home dashboard in Home Assistant, which I have displayed on a wall-mounted tablet. For a demonstration, watch this video: https://www.youtube.com/watch?v=uKKh0s9z--c
 
-![demo](www/ui/screenshots/demo_dashboard_comprs.gif)
+[![demo](www/ui/screenshots/demo_dashboard_comprs.gif)](https://www.youtube.com/watch?v=uKKh0s9z--c)
+
 
 Please be aware that some of the functionality shown in this video may differ from what is configured in the latest version of my repository
 
@@ -26,6 +27,7 @@ The first idea was to create the cards with styling in the yaml file. However af
 
 Photoshop template for to easily generate image files. e.g. for colour synced lights: [Floorplan Template.psd ](https://github.com/re-1st/HA-3d-floorplan/blob/master/www/ui/floorplan/floorplan%20lights%20template.zip)
 
+
 **Configuration**
 - Home assistant (Yaml mode)
 
@@ -39,7 +41,9 @@ Photoshop template for to easily generate image files. e.g. for colour synced li
 **Hardware**
 - Galaxy Tab s7+
 
+
 **Disclaimer**
+
 I am  a hobbyist with no programming background.  I am certain that much of my YAML, CSS, JSON, etc., could be constructed better or more efficiently.  I welcome any suggestions that could improve my work. 
 I've made this repository available to offer a comprehensive overview of my Smart Home configuration in Home Assistant. However much of the configuration relies on custom integrations, simply copying the entire code may not yield identical results. 
 
