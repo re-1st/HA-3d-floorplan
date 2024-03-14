@@ -11,7 +11,9 @@ https://github.com/lukevink
 
 
 **Floorplan overviews**
-The 3d design of the floorplan is created in Skecthup and rendered with Enscape. Then i edited them in Photoshop. The first idea was to create the cards with styling in the yaml file. However after endless fiddling with CSS, I realized that the cards are actually static within the design, allowing me to incorporate them directly into the background. As a result, all the cards simply float above the design.
+The 3d design of the floorplan is created in Skecthup and rendered with Enscape. Then i edited them in Photoshop. 
+
+The first idea was to create the cards with styling in the yaml file. However after endless fiddling with CSS, I realized that the cards are actually static within the design, allowing me to incorporate them directly into the background. As a result, all the cards simply float above the design.
 
 <img src="www/ui/floorplan/0fl/floorplanday.jpg" width="50%" alt="demo">
 
