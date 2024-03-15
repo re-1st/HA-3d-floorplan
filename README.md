@@ -29,31 +29,31 @@ Photoshop template for to easily generate image files. e.g. for colour synced li
 
 
 **Configuration**
-- Home assistant
-- Picture Elements Card
-- custom integrations:
-    more-info-card
-    kiosk-mode
-    webrtc-camera
-    apexcharts-card
-    timer-bar-card
-    select-list-card
-    xiaomi-vacuum-map-card
-    config-template-card
-    slider-button-card
-    light-entity-card
-    mini-graph-card-bundle
-    mini-media-player-bundle
-    vertical-stack-in-card
-    weather-card
-    simple-thermostat
-    vacuum-card
-    swipe-card
-    button-card
-    atomic-calendar-revive
-    spotify-card
-    state-switch
-    slider-entity-row
+- Home assistant:
+    - Picture Elements Card
+    - custom integrations  (hacs)
+        - more-info-card
+        - kiosk-mode
+        - webrtc-camera
+        - apexcharts-card
+        - timer-bar-card
+        - select-list-card
+        - xiaomi-vacuum-map-card
+        - config-template-card
+        - slider-button-card
+        - light-entity-card
+        - mini-graph-card-bundle
+        - mini-media-player-bundle
+        - vertical-stack-in-card
+        - weather-card
+        - simple-thermostat
+        - vacuum-card
+        - swipe-card
+        - button-card
+        - atomic-calendar-revive
+        - spotify-card
+        - state-switch
+        - slider-entity-row
 
 
 **Design**
