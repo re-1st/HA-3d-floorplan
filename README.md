@@ -1,4 +1,4 @@
-This is the configuration of my Smart Home dashboard in Home Assistant, which I have displayed on a wall-mounted tablet. For a demonstration, watch this video: https://www.youtube.com/watch?v=uKKh0s9z--c
+This is the configuration of my Smart Home dashboard in Home Assistant, build within the **Picture Elements card**  I have displayed the dashboard on a wall-mounted tablet. For a demonstration, watch this video: https://www.youtube.com/watch?v=uKKh0s9z--c
 
 [![demo](www/ui/screenshots/demo_dashboard_comprs.gif)](https://www.youtube.com/watch?v=uKKh0s9z--c)
 
@@ -29,7 +29,32 @@ Photoshop template for to easily generate image files. e.g. for colour synced li
 
 
 **Configuration**
-- Home assistant (Yaml mode)
+- Home assistant
+- Picture Elements Card
+- custom integrations:
+    more-info-card
+    kiosk-mode
+    webrtc-camera
+    apexcharts-card
+    timer-bar-card
+    select-list-card
+    xiaomi-vacuum-map-card
+    config-template-card
+    slider-button-card
+    light-entity-card
+    mini-graph-card-bundle
+    mini-media-player-bundle
+    vertical-stack-in-card
+    weather-card
+    simple-thermostat
+    vacuum-card
+    swipe-card
+    button-card
+    atomic-calendar-revive
+    spotify-card
+    state-switch
+    slider-entity-row
+
 
 **Design**
 - 3d design Build in Sketchup

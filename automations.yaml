@@ -613,3 +613,21 @@
     entity_id: 901005e661d5f6e2f57c6b1d6bf856f3
     domain: switch
   mode: single
+- id: '1710460230939'
+  alias: Speel Aap
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:30:00
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 230
+      - 204
+      - 76
+      brightness_pct: 35
+    target:
+      entity_id: light.studio_lightstrip_2
+  mode: single

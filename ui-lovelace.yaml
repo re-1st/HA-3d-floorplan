@@ -183,16 +183,16 @@ views:
               filter: '${ "hue-rotate(" + (vars[2]  ? vars[2] [0] : 0) + "deg) saturate(" + (vars[2]  ? vars[2] [1] : 100)+ "%)"}'
               mix-blend-mode: screen
               opacity: "${vars[0] === 'on' ? (vars[1] / 180) : '0'}"
-              top: 25%
-              left: 75%
-              width: 50%
+              top: 50%
+              left: 50%
+              width: 100%
             element:
               action: none
               entity: light.lightstrip_dressoir
               hold_action:
                 action: none
               state_image:
-                "on": /local/ui/floorplan/0fl/light-woonkamer-dressoir-lightstrip.png
+                "on": /local/ui/floorplan/0fl/light-woonkamer-dressoir-lightstrip.jpg
               tap_action:
                 action: none
               type: image
