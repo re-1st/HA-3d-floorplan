@@ -3,7 +3,7 @@ This is the configuration of my Smart Home dashboard in Home Assistant, build wi
 [![demo](www/ui/screenshots/demo_dashboard_comprs.gif)](https://www.youtube.com/watch?v=uKKh0s9z--c)
 
 
-Please be aware that some of the functionality shown in this video may differ from what is configured in the latest version of my repository
+Please be aware that a few parts of the functionality shown in this video may differ from what is configured in the latest version of my repository. 
 
 My goal is to inspire others to create their own 3D floorplans and delve into the possibilities of home automation. If any part of this configuration is unclear or requires further explanation, please do not hesitate to reach out. 
 

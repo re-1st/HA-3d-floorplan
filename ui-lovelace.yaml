@@ -2944,7 +2944,22 @@ views:
                   left: 36%
                   top: 35%
                   width: 18%
-
+          - tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  size: wide
+                  content:
+                    type: "custom:webrtc-camera"
+                    entity: camera.outdoor_cam_hd_stream
+                  title: Tuin CAM
+            image: /local/ui/nix100100.png
+            style:
+              left: 93%
+              top: 46%
+              width: 5%
+            type: image
 
           - type: conditional
             conditions:
