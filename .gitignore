@@ -48,7 +48,10 @@ zigbee.db
 config.code-workspace
 customize.yaml
 scenes.yaml
-
+scripts.yaml
+automations.yaml
+ip_bans.yaml
+groups.yaml
 # Temporary files
 *.db-journal
 *.pid
