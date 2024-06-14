@@ -161,11 +161,15 @@
   - platform: time
     at: '10:00:00'
     id: allelichtenuit10:00
+  - platform: time
+    at: '15:00:00'
   condition: []
   action:
-  - service: scene.turn_on
+  - service: light.turn_off
+    metadata: {}
+    data: {}
     target:
-      entity_id: scene.lichten_uit_overal
+      entity_id: light.all_lights
   mode: single
 - id: '1632309360451'
   alias: gangboven helderder
@@ -293,7 +297,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:45:00
+    at: 06:40:00
   condition: []
   action:
   - service: light.turn_on
@@ -302,7 +306,7 @@
       - 230
       - 204
       - 76
-      brightness_pct: 1
+      brightness_pct: 5
     target:
       device_id: 4f1a515868b497d1785bd255923dff71
   mode: single
@@ -627,7 +631,47 @@
       - 230
       - 204
       - 76
-      brightness_pct: 35
+      brightness_pct: 20
     target:
-      entity_id: light.studio_lightstrip_2
+      device_id: e6cab719b1d2432388615e7188464a25
   mode: single
+- id: '1711552726104'
+  alias: Tag Nachtkasje is scanned
+  description: Snurk
+  trigger:
+  - platform: tag
+    tag_id: 7085165b-af77-491f-b9f9-060714b1ac43
+  condition: []
+  action:
+  - service: notify.mobile_app_galaxy_watch4_classic_zraf
+    data:
+      message: Shel is klaar om te slapen
+      title: Snurk
+  mode: single
+- id: '1713219632422'
+  alias: Turn off airco slaapkamer om 8:00
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition:
+  - condition: state
+    entity_id: climate.airco_slaapkamer
+    state: cool
+  action:
+  - service: climate.set_hvac_mode
+    target:
+      entity_id: climate.airco_slaapkamer
+    data:
+      hvac_mode: 'off'
+  mode: single
+- id: '1717504917063'
+  alias: Update Map Extractor camera
+  description: ''
+  use_blueprint:
+    path: PiotrMachowski/update_map_extractor.yaml
+    input:
+      vacuum: vacuum.roborock_s6
+      camera: camera.xiaomi_cloud_map_extractor
+      mode_to_handle: two_intervals
+      interval_cleaning: 4954

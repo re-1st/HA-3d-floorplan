@@ -416,7 +416,7 @@ views:
               hold_action:
                 action: none
               state_image:
-                "on": /local/ui/floorplan/0fl/light-woonkamer-kast.png
+                "on": /local/ui/floorplan/0fl/light-woonkamer-kast.jpg
                 "off": /local/transparent.png
               tap_action:
                 action: none
@@ -763,7 +763,7 @@ views:
               --mdc-icon-size: 6vw
               left: 26%
               top: 22%
-              opacity: 0%
+              opacity: 0% 
 
           - entity: light.eettafellamp_rechts
             icon: mdi:lamp
@@ -942,102 +942,6 @@ views:
             tap_action:
               action: toggle
             type: image
-
-          # - image: /local/ui/nix100100.png
-          #   entity: plant.bananenplant
-          #   tap_action:
-          #     action: fire-dom-event
-          #     browser_mod:
-          #       service: browser_mod.popup
-          #       data:
-          #         content:
-          #           type: "custom:apexcharts-card"
-          #           card_mod:
-          #             style: |
-          #               ha-card {
-          #                 --ha-card-background: rgba(0, 0, 0, 0.5);
-          #               }
-          #           graph_span: 5d
-          #           cache: true
-          #           hours_12: false
-          #           # y_axis_precision: 0
-          #           all_series_config:
-          #             # stroke_width: 3
-          #             show:
-          #               legend_value: true
-          #             type: area
-          #           style:
-          #             left: 37.5%
-          #             top: 86%
-          #             width: 23%
-
-          #           span:
-          #             end: day
-          #           header:
-          #             show: true
-          #             show_states: true
-          #             colorize_states: true
-          #           apex_config:
-          #             animations:
-          #               enabled: true
-          #               easing: 'easeinout'
-          #               animateGradually:
-          #                 enabled: true
-          #               dynamicAnimation:
-          #                 enabled: true
-          #             chart:
-          #               height: 220
-          #             xaxis:
-          #               labels:
-          #                 format: dd
-          #                 show: true
-          #                 showAlways: true
-          #             # stroke:
-          #             #   width: 8
-          #             #   curve: smooth
-          #             yaxis:
-          #               - show: true
-          #                 decimalsInFloat: 0
-          #                 forceNiceScale: true
-          #               - show: true
-          #                 opposite: true
-          #                 decimalsInFloat: 0
-          #                 forceNiceScale: true
-          #             legend:
-          #               show: true
-          #             dataLabels:
-          #               enabled: true
-          #           series:
-          #             - color: '#4a6025'
-          #               entity: sensor.plant_kamerplant_conductivity
-          #               # attribute: current_temperature
-          #               name: Grond
-          #               # unit: °C
-          #               type: column
-          #               group_by:
-          #                 func: max
-          #                 duration: 1d
-          #               extend_to: end
-          #               stroke_width: 10
-          #             - color: '#c56f06'
-          #               # show: false
-          #               entity: sensor.plant_kamerplant_temperature
-          #               name: Temp.
-          #               stroke_width: 3
-          #               group_by:
-          #                 func: avg
-          #                 duration: 4h
-          #               type: line
-          #               extend_to: end
-          #             - color: '#0b50bf'
-          #               entity: sensor.plant_kamerplant_moisture
-          #               name: Vocht
-          #               group_by:
-          #                 func: avg
-          #                 duration: 4h
-
-          #           # style:
-          #           #   z-index: 5
 
           # style:
           #   left: 60%
@@ -1856,7 +1760,7 @@ views:
                 state: "spotify"
             elements:
               - type: custom:spotify-card
-                limit: 24
+                limit: 32
                 hide_connect_devices: true
                 always_play_random_song: true
                 height: 250
@@ -2447,6 +2351,127 @@ views:
               top: 64.5%
               width: 5%
 
+          - icon: mdi:numeric
+            type: icon
+            style:
+              left: 60%
+              top: 50%
+              --mdc-icon-size: 6vw
+              opacity: 0
+            entity: input_text.lamptoggle
+            tap_action:
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                value: input_boolean.plant_popup
+              target:
+                entity_id: input_text.lamptoggle
+
+          - type: conditional
+            conditions:
+              - entity: input_text.lamptoggle
+                state: input_boolean.plant_popup
+            elements:
+              - type: image
+                entity: input_text.lamptoggle
+                tap_action:
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    value: none
+                  target:
+                    entity_id: input_text.lamptoggle
+                hold_action:
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    value: none
+                  target:
+                    entity_id: input_text.lamptoggle
+                image: /local/ui/transparant_background.png
+
+                style:
+                  left: 50%
+                  top: 50%
+                  width: 100%
+                  opacity: 0
+              - type: "custom:apexcharts-card"
+                graph_span: 5d
+                cache: true
+                hours_12: false
+                # y_axis_precision: 0
+                all_series_config:
+                  # stroke_width: 3
+                  show:
+                    legend_value: true
+                  type: area
+                style:
+                  left: 55%
+                  top: 30%
+                  width: 25%
+                  background-color: black
+                span:
+                  end: day
+                header:
+                  show: true
+                  title: Kamerplant
+                  show_states: false
+                  colorize_states: true
+                apex_config:
+                  chart:
+                    height: 200
+                  xaxis:
+                    labels:
+                      format: dd
+                      show: true
+                      showAlways: true
+                  # stroke:
+                  #   width: 8
+                  #   curve: smooth
+                  yaxis:
+                    - show: true
+                      min: 0
+                      max: 1000
+                      decimalsInFloat: 0
+                      forceNiceScale: true
+                    - show: true
+                      min: 0
+                      max: 80
+                      opposite: true
+                      decimalsInFloat: 0
+                      forceNiceScale: true
+                  legend:
+                    show: true
+                  dataLabels:
+                    enabled: true
+                series:
+                  - color: "#7f859d"
+                    entity: sensor.citroenplant_conductivity
+                    # attribute: current_temperature
+                    name: Vruchtbaarheid
+                    # unit: °C
+                    type: column
+                    group_by:
+                      func: max
+                      duration: 1d
+                    extend_to: end
+                    stroke_width: 10
+                  - color: "#368ed1"
+                    entity: sensor.citroenplant_moisture
+                    name: Vocht
+                    group_by:
+                      func: avg
+                      duration: 4h
+                    stroke_width: 3
+                    extend_to: end
+                  - color: "#8c8c8c"
+                    entity: sensor.citroenplant_illuminance
+                    name: Licht
+                    group_by:
+                      func: avg
+                      duration: 4h
+                    stroke_width: 3
+                    extend_to: end
               ########################      CAMERA  ICONS  #########################
 
           # - type: image
@@ -2493,7 +2518,7 @@ views:
                           - type: custom:vertical-stack-in-card
                             cards:
                               - type: custom:webrtc-camera
-                                url: !secret webrtc_cam_voordeur
+                                entity: camera.voordeur_cam_hd_stream
                                 muted: true
                               - type: custom:vertical-stack-in-card
                                 horizontal: true
@@ -2634,7 +2659,23 @@ views:
                   left: 50%
                   top: 50%
                   width: 100%
-
+              - type: "custom:button-card"
+                aspect_ratio: 2/1
+                show_name: false
+                color: "rgba(255, 0 , 0 , 0)"
+                color_type: card
+                style:
+                  height: 100%
+                  left: 50%
+                  top: 50%
+                  width: 100%
+                tap_action:
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    value: none
+                  target:
+                    entity_id: input_text.lamptoggle
 
           - type: conditional #slaapkamer_lamp
             conditions:
@@ -2648,7 +2689,7 @@ views:
                 card_mod:
                   style: |
                     ha-card {
-                      border-radius: 13% !important;
+                      border-radius: 8% !important;
                       overflow: hidden !important;
                       height: 550px;
                       background-color: rgba(10, 10, 10, 0.6) !important;
@@ -3037,10 +3078,6 @@ views:
                       box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
                       border-radius: 25px !important;
                     }
-
-
-
-                    }
           - type: conditional
             conditions:
               - entity: input_boolean.qr_toggle
@@ -3415,22 +3452,22 @@ views:
               tap_action:
                 action: none
               type: image
-          ########### ANIMATIONS  #################
-          # - action: none
-          #   entity: switch.water_control
-          #   hold_action:
-          #     action: none
-          #   state_image:
-          #     "on": /local/ui/ui_img/splash.gif
-          #     "off": /local/ui/nix100100.png
-          #   style:
-          #     left: 50%
-          #     mix-blend-mode: lighten
-          #     top: 50%
-          #     width: 100%
-          #   tap_action:
-          #     action: none
-          #   type: image
+          - action: none
+            entity: input_text.zonnescherm
+            hold_action:
+              action: none
+            state_image:
+              open: /local/ui/floorplan/tuin/tuinplan_zonnescherm.jpg
+              midden: /local/ui/floorplan/tuin/tuin_zonnescherm50.jpg
+              dicht: /local/ui/transparant_background.png
+            style:
+              left: 50%
+              top: 50%
+              width: 100%
+            tap_action:
+              action: none
+            type: image
+
           - action: none
             entity: input_boolean.smoke
             hold_action:
@@ -4902,24 +4939,24 @@ views:
                   - value: "hop"
                     color: var(--primary-color)
                     icon: mdi:flower-poppy
-              - type: "custom:button-card"
-                entity: input_select.tuin_ui_bewaterselectie
-                color: var(--disabled-text-color)
-                icon: mdi:fruit-citrus
-                size: 65%
-                show_state: false
-                show_label: false
-                show_name: false
-                tap_action:
-                  action: call-service
-                  service: input_select.select_option
-                  service_data:
-                    option: citroen
-                    entity_id: input_select.tuin_ui_bewaterselectie
-                state:
-                  - value: "citroen"
-                    color: var(--primary-color)
-                    icon: mdi:fruit-citrus
+              # - type: "custom:button-card"
+              #   entity: input_select.tuin_ui_bewaterselectie
+              #   color: var(--disabled-text-color)
+              #   icon: mdi:fruit-citrus
+              #   size: 65%
+              #   show_state: false
+              #   show_label: false
+              #   show_name: false
+              #   tap_action:
+              #     action: call-service
+              #     service: input_select.select_option
+              #     service_data:
+              #       option: citroen
+              #       entity_id: input_select.tuin_ui_bewaterselectie
+              #   state:
+              #     - value: "citroen"
+              #       color: var(--primary-color)
+              #       icon: mdi:fruit-citrus
           # - type: conditional
           #   conditions:
           #     - entity: timer.bewatering
@@ -5022,79 +5059,7 @@ views:
                     stroke_width: 3
                     extend_to: end
           ################### citroenplant  ###########################
-          - type: conditional
-            conditions:
-              - entity: input_select.tuin_ui_bewaterselectie
-                state: "citroen"
-            elements:
-              - type: "custom:apexcharts-card"
-                graph_span: 5d
-                cache: true
-                hours_12: false
-                # y_axis_precision: 0
-                all_series_config:
-                  # stroke_width: 3
-                  show:
-                    legend_value: true
-                  type: area
-                style:
-                  left: 62%
-                  top: 86%
-                  width: 23%
-                span:
-                  end: day
-                header:
-                  show: true
-                  title: Citroenplant
-                  show_states: false
-                  colorize_states: true
-                apex_config:
-                  chart:
-                    height: 200
-                  xaxis:
-                    labels:
-                      format: dd
-                      show: true
-                      showAlways: true
-                  # stroke:
-                  #   width: 8
-                  #   curve: smooth
-                  yaxis:
-                    - show: true
-                      min: 0
-                      max: 1000
-                      decimalsInFloat: 0
-                      forceNiceScale: true
-                    - show: true
-                      min: 0
-                      max: 80
-                      opposite: true
-                      decimalsInFloat: 0
-                      forceNiceScale: true
-                  legend:
-                    show: true
-                  dataLabels:
-                    enabled: true
-                series:
-                  - color: "#7f859d"
-                    entity: sensor.citroenplant_conductivity
-                    # attribute: current_temperature
-                    name: Vruchtbaarheid
-                    # unit: °C
-                    type: column
-                    group_by:
-                      func: max
-                      duration: 1d
-                    extend_to: end
-                    stroke_width: 10
-                  - color: "#368ed1"
-                    entity: sensor.citroenplant_moisture
-                    name: Vocht
-                    group_by:
-                      func: avg
-                      duration: 4h
-                    stroke_width: 3
-                    extend_to: end
+
           ################### hop ###########################
           - type: conditional
             conditions:
@@ -5356,101 +5321,73 @@ views:
                   width: 10%
           ################### weer ###########################
 
-          - entity: weather.buienradar
+          - entity: weather.openweathermap
             type: custom:weather-card
-            forecast: false
+            forecast: true
             details: false
             style:
               left: 86%
               top: 66%
               width: 22%
               font-size: 0.6vw
-          - type: custom:config-template-card
-            entities:
-              - weather.buienradar
-            style:
-              left: 87%
-              top: 83%
-              width: 22%
-              font-size: 0.7vw
-            element:
-              type: "custom:swipe-card"
+          - type: conditional
+            conditions:
+              - entity: input_select.weerselector
+                state: "vooruitzicht"
+            elements:
+              - type: "custom:vertical-stack-in-card"
+                style:
+                  left: 87%
+                  top: 83%
+                  width: 22%
+                cards:
+                  - entity: weather.openweathermap
+                    type: custom:weather-card
+                    current: true
+                    forecast: true
+                    details: true
+                    hourly_forecast: true
+                    number_of_forecasts: 5
 
-              parameters:
-                # slidesPerView: "auto"
-                snapOnRelease: true
-                # spaceBetween: 50
-                grabCursor: false
-                nested: true
-              cards:
-                - type: "custom:vertical-stack-in-card"
-                  cards:
-                    - entity: weather.buienradar
-                      type: custom:weather-card
-                      current: false
-                      forecast: true
-                      details: false
-                      hourly_forecast: false
-                      number_of_forecasts: 5
-
-                    - type: "custom:neerslag-card"
-                      entities:
-                        - sensor.neerslag_buienalarm_regen_data
-                        - sensor.neerslag_buienradar_regen_data
-                      long: 5.0511
-                      lat: 52.0978
-                      lineColor: "rgba(89, 160, 238, 1)"
-                      fillColor: "rgba(89, 160, 238, 0.2)"
-                      update_interval: 50
-                      icon: mdi:stairs
-                      style:
-                        icon-size: 6vw
-                      card_mod:
-                        style: |
-                          ha-card {
-                            overflow: hidden !important;
-                            margin-bottom: -34px !important;
-                            margin-top: -10% !important;
-                          }
-
-                # - type: 'custom:apexcharts-card'
-                #   update_interval: 5m
-                #   apex_config:
-                #     chart:
-                #       height: 200
-                #       zoom:
-                #         type: x
-                #         enabled: true
-                #         autoScaleYaxis: false
-                #   # y_axis_precision: 1
-                #   graph_span: 8h
-                #   now:
-                #     show: true
-                #   span:
-                #     start: hour
-                #   header:
-                #     show: true
-                #     title: Temperatuur +8h
-                #     colorize_states: true
-                #     show_states: false
-                #   series:
-                #     - entity: weather.buienradar
-                #       show:
-                #         in_header: raw
-                #       type: area
-                #       data_generator: |
-                #         return entity.attributes.forecast.map((entry) => {
-                #           return [new Date(entry.datetime), entry.temperature];
-                #           });
-
-                - type: picture-entity
-                  entity: weather.buienradar
-                  camera_image: camera.buienradar
-                  aspect_ratio: "4:3"
-                  style:
-                    mix-blend-mode: screen
-                    top: 5%
-
+                  - type: "custom:neerslag-card"
+                    entities:
+                      - sensor.neerslag_buienalarm_regen_data
+                      - sensor.neerslag_buienradar_regen_data
+                    long: 5.0511
+                    lat: 52.0978
+                    lineColor: "rgba(89, 160, 238, 1)"
+                    fillColor: "rgba(89, 160, 238, 0.2)"
+                    update_interval: 50
+                    icon: mdi:stairs
+                    style:
+                      icon-size: 6vw
+                    card_mod:
+                      style: |
+                        ha-card {
+                          overflow: hidden !important;
+                          margin-bottom: -34px !important;
+                          margin-top: -10% !important;
+                        }
+          - type: conditional
+            conditions:
+              - entity: input_select.weerselector
+                state: "buienradar"
+            elements:
+              - type: "custom:vertical-stack-in-card"
+                style:
+                  left: 87%
+                  top: 83%
+                  width: 22%
+                cards:
+                  - type: picture-entity
+                    entity: weather.buienradar
+                    camera_image: camera.buienradar
+                    aspect_ratio: "4:3"
+                    style:
+                      mix-blend-mode: screen
+                      left: 87%
+                      top: 83%
+                      width: 22%
               ################################# AFVAL #############################################
           - type: conditional
             conditions:
@@ -6623,7 +6560,7 @@ views:
                     }
 
               - type: custom:slider-button-card
-                entity: light.tom
+                entity: light.bram
                 slider:
                   direction: left-right
                   background: gradient
@@ -6994,7 +6931,7 @@ views:
                   width: 20%
                 step_layout: row
                 show_header: true
-                entity: climate.slaapkamer
+                entity: climate.airco_slaapkamer
                 control:
                   _headings: false
                   hvac:
@@ -7371,65 +7308,31 @@ views:
               - entity: input_text.lamptoggle
                 state: light.slaapkamer_lamp
             elements:
-              - type: custom:vertical-stack-in-card
-                style:
-                  left: 50%
-                  top: 50%
-                  width: 18%
-                cards:
-                  - type: custom:slider-button-card
-                    entity: light.slaapkamer_lamp
-                    slider:
-                      direction: left-right
-                      background: gradient
-                      use_state_color: true
-                      use_percentage_bg_opacity: false
-                      show_track: true
-                      toggle_on_click: false
-                      force_square: false
-                    show_name: true
-                    name: Slaapkamerlamp
-                    show_state: false
-                    compact: true
-                    icon:
-                      show: true
-                      haptic: medium
-                      use_state_color: true
-                      tap_action:
-                        action: none
-                      icon: mdi:format-color-fill
-                    action_button:
-                      show: true
-                      icon: mdi:power-standby
-                      tap_action:
-                        action: call-service
-                        service: script.toggle_light_off
-                    card_mod:
-                      style: |
-                        ha-card {
-                          --ha-card-background: black;
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                          border-radius: 25px !important;
-                        }
-                  - type: "custom:light-entity-card"
-                    shorten_cards: false
-                    hide_header: true
-                    consolidate_entities: true
-                    persist_features: false
-                    brightness: false
-                    color_temp: false
-                    white_value: false
-                    color_picker: true
-                    smooth_color_wheel: true
-                    child_card: false
-                    show_slider_percent: false
-                    full_width_sliders: false
-                    entity: light.slaapkamer_lamp
-                    effects_list: false
-                    style:
-                      background: rgba(0, 0, 0, 0.7)
 
-                      height: 250px
+              - type: custom:more-info-card
+                entity: light.slaapkamer_lamp
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 8% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
+                style:
+                  left: 45%
+                  top: 35%
+                  width: 18%
           - type: conditional #lichtbol_tom
             conditions:
               - entity: input_text.lamptoggle
@@ -8853,13 +8756,13 @@ views:
             hold_action:
               action: none
             state_image:
-              middag: /local/ui/floorplan/zolder/zolder_day.png?v=302
-              begin_dag: /local/ui/floorplan/zolder/zolder_day.png?v=302
-              einde_dag: /local/ui/floorplan/zolder/zolder_day.png?v=302
-              nacht: /local/ui/floorplan/zolder/zolder_night.png?v=302
-              natte_nacht: /local/ui/floorplan/zolder/zolder_night.png?v=302
-              bewolkt: /local/ui/floorplan/zolder/zolder_day.png?v=302
-              regen: /local/ui/floorplan/zolder/zolder_day.png?v=302
+              middag: /local/ui/floorplan/zolder/zolder_day.jpg?v=13
+              begin_dag: /local/ui/floorplan/zolder/zolder_day.jpg?v=13
+              einde_dag: /local/ui/floorplan/zolder/zolder_day.jpg?v=13
+              nacht: /local/ui/floorplan/zolder/zolder_night.jpg?v=12
+              natte_nacht: /local/ui/floorplan/zolder/zolder_night.jpg?v=13
+              bewolkt: /local/ui/floorplan/zolder/zolder_day.jpg?v=13
+              regen: /local/ui/floorplan/zolder/zolder_day.jpg?v=13
 
             style:
               height: 100%
@@ -9167,6 +9070,104 @@ views:
               type: image
           - type: custom:config-template-card
             entities:
+              - light.tom_go_links
+            variables:
+              - states['light.tom_go_links'].state
+              - states['light.tom_go_links'].attributes.brightness
+              - states['light.tom_go_links'].attributes.hs_color
+            style:
+              mix-blend-mode: screen
+              opacity: "${vars[0] === 'on' ? (vars[1] / 150) : '0'}"
+              filter: '${ "hue-rotate(" + (vars[2]  ? vars[2] [0] : 0) + "deg) saturate(" + (vars[2]  ? vars[2] [1] : 100)+ "%)"}'
+              left: 50%
+              top: 50%
+              width: 100%
+            element:
+              action: none
+              entity: light.tom_go_links
+              image: /local/ui/nixx.png
+              hold_action:
+                action: none
+              state_image:
+                "on": /local/ui/floorplan/zolder/zolder_tom_hue_go.jpg
+              tap_action:
+                action: none
+              type: image
+          - type: custom:config-template-card
+            entities:
+              - light.tom_go_links
+            variables:
+              - states['light.tom_go_links'].state
+              - states['light.tom_go_links'].attributes.brightness
+              - states['light.tom_go_links'].attributes.hs_color
+            style:
+              filter: '${ "hue-rotate(" + (vars[2]  ? vars[2] [0] : 0) + "deg) saturate(" + (vars[2]  ? vars[2] [1] : 100)+ "%)"}'
+              mix-blend-mode: screen
+              left: 50%
+              top: 50%
+              width: 100%
+            element:
+              action: none
+              entity: light.tom_go_links
+              image: /local/ui/nixx.png
+              hold_action:
+                action: none
+              state_image:
+                "on": /local/ui/floorplan/zolder/zolder_tom_hue_go_aan.jpg
+              tap_action:
+                action: none
+              type: image
+          - type: custom:config-template-card
+            entities:
+              - light.studio_lightstrip_2
+            variables:
+              - states['light.studio_lightstrip_2'].state
+              - states['light.studio_lightstrip_2'].attributes.brightness
+              - states['light.studio_lightstrip_2'].attributes.hs_color
+            style:
+              mix-blend-mode: screen
+              opacity: "${vars[0] === 'on' ? (vars[1] / 150) : '0'}"
+              filter: '${ "hue-rotate(" + (vars[2]  ? vars[2] [0] : 0) + "deg) saturate(" + (vars[2]  ? vars[2] [1] : 100)+ "%)"}'
+              left: 50%
+              top: 50%
+              width: 100%
+            element:
+              action: none
+              entity: light.studio_lightstrip_2
+              image: /local/ui/nixx.png
+              hold_action:
+                action: none
+              state_image:
+                "on": /local/ui/floorplan/zolder/zolder_tom_ledstrip.jpg
+              tap_action:
+                action: none
+              type: image
+          - type: custom:config-template-card
+            entities:
+              - light.studio_lightstrip_2
+            variables:
+              - states['light.studio_lightstrip_2'].state
+              - states['light.studio_lightstrip_2'].attributes.brightness
+              - states['light.studio_lightstrip_2'].attributes.hs_color
+            style:
+              filter: '${ "hue-rotate(" + (vars[2]  ? vars[2] [0] : 0) + "deg) saturate(" + (vars[2]  ? vars[2] [1] : 100)+ "%)"}'
+              mix-blend-mode: screen
+              left: 50%
+              top: 50%
+              width: 100%
+            element:
+              action: none
+              entity: light.studio_lightstrip_2
+              image: /local/ui/nixx.png
+              hold_action:
+                action: none
+              state_image:
+                "on": /local/ui/floorplan/zolder/zolder_tom_ledstrip_aan.jpg
+              tap_action:
+                action: none
+              type: image
+          - type: custom:config-template-card
+            entities:
               - light.color_temperature_light_6
             variables:
               - states['light.color_temperature_light_6'].state
@@ -9398,6 +9399,151 @@ views:
               left: 47%
               top: 41%
               width: 6%
+          - type: image
+            entity: input_boolean.zolder_hvac_controller
+            tap_action:
+              action: toggle
+            state_image: 
+              "on": /local/ui/ui_img/hue_light_scene.png
+              "off": /local/ui/ui_img/klimaat_title.png
+            style:
+              left: 13.5%
+              top: 65%
+              width: 23.5%
+          - type: conditional
+            conditions:
+              - entity: input_boolean.zolder_hvac_controller
+                state: "on"
+            elements:
+              - type: "custom:vertical-stack-in-card"
+                style:
+                  width: 23.4%
+                  left: 13.4%
+                  top: 80%
+                cards:
+                  - type: custom:slider-button-card 
+                    entity: light.zolder_tom
+                    slider:
+                      direction: left-right
+                      background: gradient
+                      use_state_color: true
+                      use_percentage_bg_opacity: true
+                      show_track: true
+                      toggle_on_click: false
+                      force_square: false
+                    show_name: true
+                    name: Slaapkamer Tom
+                    show_state: false
+                    compact: true
+                    icon:
+                      show: true
+                      use_state_color: true
+                      tap_action:
+                        action: more-info
+                      icon: mdi:lightbulb
+                    action_button:
+                      mode: toggle
+                      icon: mdi:power
+                      show: false
+                      show_spinner: false
+                      tap_action:
+                        action: toggle
+                    style:
+                      left: 25%
+                      top: 50%
+                    card_mod:
+                      style: |
+                        :host {
+                          height: 3% !important;
+                          width: 10% !important:
+                        }
+                        ha-card {
+                          --ha-card-background: rgba(26, 26, 26, 1)!important;
+                        }
+
+
+                  - type: custom:slider-button-card
+                    entity: light.zolder_logeerkamer
+                    slider:
+                      direction: left-right
+                      background: gradient
+                      use_state_color: true
+                      use_percentage_bg_opacity: true
+                      show_track: true
+                      toggle_on_click: false
+                      force_square: false
+                    show_name: true
+                    name: Logeerkamer
+                    show_state: false
+                    compact: true
+                    icon:
+                      show: true
+                      use_state_color: true
+                      tap_action:
+                        action: more-info
+                      icon: mdi:lightbulb
+                    action_button:
+                      mode: toggle
+                      icon: mdi:power
+                      show: false
+                      show_spinner: true
+                      tap_action:
+                        action: toggle
+                    style:
+                      left: 25%
+                      top: 50%
+                    card_mod:
+                      style: |
+                        :host {
+                          background-color: rgba(0, 0, 0, 0)!important;
+                          height: 3% !important;
+                          width: 10% !important:
+                        }
+                        ha-card {
+                          --ha-card-background: rgba(26, 26, 26, 1)!important;
+                        }
+                  - type: custom:slider-button-card
+                    entity: light.zolder_overloop_lights
+                    slider:
+                      direction: left-right
+                      background: gradient
+                      use_state_color: true
+                      use_percentage_bg_opacity: true
+                      show_track: true
+                      toggle_on_click: false
+                      force_square: false
+                    show_name: true
+                    name: Overloop
+                    show_state: false
+                    compact: true
+                    icon:
+                      show: true
+                      use_state_color: true
+                      tap_action:
+                        action: more-info
+                      icon: mdi:lightbulb
+                    action_button:
+                      mode: toggle
+                      icon: mdi:power
+                      show: false
+                      show_spinner: true
+                      tap_action:
+                        action: toggle
+                    style:
+                      left: 25%
+                      top: 50%
+                    card_mod:
+                      style: |
+                        :host {
+                          background-color: rgba(0, 0, 0, 0)!important;
+                          height: 3% !important;
+                          width: 10% !important:
+                        }
+                        ha-card {
+                          --ha-card-background: rgba(26, 26, 26, 1)!important;
+                        }
+
+
           # - entity: light.zolderspot
 
           #   image: /local/ui/nix100100.png
@@ -9423,8 +9569,8 @@ views:
           - type: image
             image: /local/ui/nix100100.png
             style:
-              left: 25%
-              top: 62%
+              left: 55%
+              top: 52%
               width: 8%
 
             tap_action:
@@ -9791,6 +9937,16 @@ views:
                     extend_to: end
 
           ####### Airco ####
+          - type: image
+            image: /local/ui/nix100100.png
+            entity: input_boolean.zolder_hvac_controller
+            tap_action:
+              action: toggle
+
+            style:
+              left: 38%
+              top: 52%
+              width: 8%
           - action: none
             image: /local/ui/nix100100.png
             entity: climate.zolderkamer_tom
@@ -9807,37 +9963,42 @@ views:
             tap_action:
               action: none
             type: image
-          - type: "custom:simple-thermostat"
-            style:
-              left: 38%
-              top: 80%
-              width: 22%
-            step_layout: row
-            step_size: 1
-            show_header: true
-            entity: climate.zolderkamer_tom
-            control:
-              _headings: false
-              hvac:
-                heat_cool: false
-                dry: true
-              fan: true
-            hide:
-              heat_cool: true
-            name: Kamer Tom
-            card_mod:
-              style: |
-                ha-card {
-                  --st-font-size-xl: 1.1vw;
-                  --st-font-size-m: 1.1vw;
-                  --st-font-size-title: 1vw;
-                  --st-spacing: 2px;
-                }
-            layout:
-              mode:
-                headings: false
-                names: true
-                icons: true
+          - type: conditional
+            conditions:
+              - entity: input_boolean.zolder_hvac_controller
+                state: "off"
+            elements:
+              - type: "custom:simple-thermostat"
+                style:
+                  left: 14%
+                  top: 80%
+                  width: 22%
+                step_layout: row
+                step_size: 1
+                show_header: true
+                entity: climate.zolderkamer_tom
+                control:
+                  _headings: false
+                  hvac:
+                    heat_cool: false
+                    dry: true
+                  fan: true
+                hide:
+                  heat_cool: true
+                name: Kamer Tom
+                card_mod:
+                  style: |
+                    ha-card {
+                      --st-font-size-xl: 1.1vw;
+                      --st-font-size-m: 1.1vw;
+                      --st-font-size-title: 1vw;
+                      --st-spacing: 2px;
+                    }
+                layout:
+                  mode:
+                    headings: false
+                    names: true
+                    icons: true
 
           - type: conditional
             conditions:
@@ -9873,7 +10034,7 @@ views:
             hold_action:
               action: none
             style:
-              left: 13%
+              left: 38%
               top: 75%
               width: 21%
 
@@ -9930,219 +10091,10 @@ views:
               #     duration: 1m
               #     func: avg
             style:
-              left: 14%
+              left: 39%
               top: 90%
               width: 20%
 
-          # - type: image
-          #   image: /local/ui/ui_img/duco_title.png
-          #   style:
-          #     left: 14.5%
-          #     top: 38.5%
-          #     width: 23.5%
-
-          # - type: custom:button-card
-          #   tap_action:
-          #     haptic: medium
-          #     action: call-service
-          #     service: input_select.select_option
-          #     service_data:
-          #       option: maxpending
-          #       entity_id: input_select.duco_status
-          #   entity: input_select.duco_status
-          #   state:
-          #     - value: 'uit'
-          #       color: white
-          #       label: uit
-          #       font-size: 15px
-          #   label: aan
-          #   styles:
-          #     label:
-          #       - color: grey
-          #   show_name: false
-          #   size: 50%
-          #   show_label: true
-          #   color_type: icon
-          #   color: white
-          #   icon: mdi:power-standby
-
-          #   show_state: false
-          #   hold_action:
-          #     action: none
-          #   style:
-          #     left: 6%
-          #     top: 47%
-          #     width: 5%
-          # - type: custom:button-card
-          #   color_type: icon
-
-          #   tap_action:
-          #     action: call-service
-          #     haptic: medium
-          #     service: input_select.select_option
-          #     service_data:
-          #       entity_id: input_select.duco_status
-          #       option: autopending
-          #   entity: input_select.duco_status
-          #   size: 50%
-          #   styles:
-          #     label:
-          #       - color: grey
-          #       - font-size: 15px
-          #   state:
-          #     - value: 'auto'
-          #       color: var(--primary-color)
-          #     - value: 'autopending'
-          #       color: '#f2b236'
-          #   show_name: false
-          #   show_label: true
-          #   label: auto
-          #   color: grey
-          #   icon: mdi:air-purifier
-          #   show_state: false
-          #   hold_action:
-          #     action: none
-          #   style:
-          #     left: 12%
-          #     top: 47%
-          #     width: 5%
-          # - type: custom:button-card
-          #   color_type: icon
-          #   entity: input_select.duco_status
-          #   size: 50%
-          #   styles:
-          #     label:
-          #       - color: grey
-          #       - font-size: 15px
-          #   state:
-          #     - value: 'max'
-          #       color: var(--primary-color)
-          #     - value: 'maxpending'
-          #       color: '#f2b236'
-          #   show_name: false
-          #   show_label: true
-          #   name:  max
-          #   label: max
-          #   icon: mdi:rocket-launch-outline
-          #   show_state: false
-          #   hold_action:
-          #     action: none
-          #   style:
-          #     left: 18%
-          #     top: 47%
-          #     width: 5%
-          #   tap_action:
-          #     action: call-service
-          #     service: input_select.select_option
-          #     service_data:
-          #       option: maxpending
-          #       entity_id: input_select.duco_status
-
-          # - type: conditional
-          #   conditions:
-          #     - entity: timer.luchtventilatie
-          #       state_not: "idle"
-          #   elements:
-
-          #     - type: custom:timer-bar-card
-          #       entity: timer.luchtventilatie
-          #       active_icon: ""
-          #       name: ""
-          #       style:
-          #         left: 19%
-          #         top: 58%
-          #         width: 19%
-          #       full_row: true
-
-          # - type: custom:button-card
-          #   entity: timer.luchtventilatie
-
-          #   show_name: false
-          #   color: white
-          #   size: 50%
-          #   show_label: true
-          #   show_state: false
-          #   styles:
-          #     label:
-          #       - font-size: 18px
-          #   tap_action:
-          #     action: call-service
-          #     service: script.stop_timer_luchtreiniger
-          #   icon: mdi:rocket-launch-outline
-          #   show_icon: false
-          #   label: X
-          #   hold_action:
-          #     action: none
-          #   style:
-          #     left: 6%
-          #     top: 58%
-          #     width: 5%
-          # - type: conditional
-          #   conditions:
-          #     - entity: timer.luchtventilatie
-          #       state: "idle"
-          #   elements:
-          #     - type: custom:button-card
-          #       tap_action:
-          #         action: call-service
-          #         service: script.start_luchtventilatie_timer
-          #       entity: timer.luchtventilatie
-
-          #       show_name: false
-          #       size: 50%
-          #       show_label: true
-          #       show_state: false
-          #       styles:
-          #         label:
-          #           - font-size: 18px
-
-          #       icon: mdi:rocket-launch-outline
-          #       show_icon: false
-          #       label: set
-          #       hold_action:
-          #         action: none
-          #       style:
-          #         left: 6%
-          #         top: 58%
-          #         width: 5%
-          # - type: 'custom:mini-graph-card'
-          #   unit: w
-          #   group_by: hour
-          #   animate: true
-          #   hours_to_show: 24
-          #   entities:
-          #     - sensor.luchtventilatie_stekker_current_consumption
-          #   show:
-          #     state: false
-          #     labels: true
-          #     name: false
-          #   color_thresholds:
-          #     - value: 10
-          #       color: '#f39c12'
-          #     - value: 25
-          #       color: '#d35400'
-          #     - value: 50
-          #       color: '#c0392b'
-          #   style:
-          #     left: 13.5%
-          #     top: 57%
-          #     width: 18%
-
-          # - type: custom:slider-entity-row
-          #   entity: input_number.duco_timer
-          #   full_row: true
-          #   hide_when_off: false
-          #   style:
-          #     left: 19%
-          #     top: 58%
-          #     width: 20%
-          #   hide_state: false
-          # active_state: # This option isn't needed due to the defaults
-          #   - manual
-          #   - program
-          # bar_width: 35%
-          # compressed: true
-          # filter: true # So only the running and scheduled stations are shown
 
           - type: "custom:button-card"
             aspect_ratio: 1/1.6
@@ -10167,71 +10119,30 @@ views:
               - entity: input_text.lamptoggle
                 state: light.hue_color_spot_1
             elements:
-              - type: custom:vertical-stack-in-card
+              - type: custom:more-info-card
+                entity: light.hue_color_spot_1
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 8% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 15%
-                  top: 30%
-                  width: 20%
-                  border-radius: 13px
-                  # box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6)
-                cards:
-                  - type: custom:slider-button-card
-                    entity: light.hue_color_spot_1
-                    slider:
-                      direction: left-right
-                      background: gradient
-                      use_state_color: true
-                      use_percentage_bg_opacity: true
-                      show_track: true
-                      toggle_on_click: false
-                      force_square: false
-                    show_name: true
-                    show_state: false
-                    compact: true
-                    icon:
-                      show: true
-                      haptic: selection
-                      use_state_color: true
-                      tap_action:
-                        action: none
-                      icon: hue:pendant-cher
-                    action_button:
-                      show: true
-                      icon: mdi:power-standby
-                      tap_action:
-                        action: call-service
-                        service: script.toggle_light_off
-                      mode: custom
-                    card_mod:
-                      style: |
-                        ha-card {
-                          --ha-card-background: black;
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                          border-radius: 25px !important;
-                        }
-                  - type: "custom:light-entity-card"
-                    shorten_cards: false
-                    hide_header: true
-                    consolidate_entities: true
-                    persist_features: false
-                    brightness: false
-                    color_temp: false
-                    white_value: false
-                    color_picker: true
-                    smooth_color_wheel: true
-                    child_card: false
-                    show_slider_percent: false
-                    full_width_sliders: false
-                    header: Muurspot Tom
-                    entity: light.hue_color_spot_1
-                    effects_list: false
-                    style:
-                      background: rgba(0, 0, 0, 0.7)
-                    card_mod:
-                      style: |
-                        ha-card {
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                        }
+                  left: 40%
+                  top: 35%
+                  width: 18%
 
           - type: conditional
             conditions:
@@ -10379,138 +10290,59 @@ views:
               - entity: input_text.lamptoggle
                 state: light.hue_centura_color_spot_1
             elements:
-              - type: custom:vertical-stack-in-card
+              - type: custom:more-info-card
+                entity: light.hue_centura_color_spot_1
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 8% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 30%
-                  top: 55%
-                  width: 20%
-                  border-radius: 13px
-                  # box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6)
-                cards:
-                  - type: custom:slider-button-card
-                    entity: light.hue_centura_color_spot_1
-                    slider:
-                      direction: left-right
-                      background: gradient
-                      use_state_color: true
-                      use_percentage_bg_opacity: true
-                      show_track: true
-                      toggle_on_click: false
-                      force_square: false
-                    show_name: true
-                    show_state: false
-                    compact: true
-                    icon:
-                      show: true
-                      haptic: selection
-                      use_state_color: true
-                      tap_action:
-                        action: none
-                      icon: hue:pendant-cher
-                    action_button:
-                      show: true
-                      icon: mdi:power-standby
-                      tap_action:
-                        action: call-service
-                        service: script.toggle_light_off
-                      mode: custom
-                    card_mod:
-                      style: |
-                        ha-card {
-                          --ha-card-background: black;
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                          border-radius: 25px !important;
-                        }
-                  - type: "custom:light-entity-card"
-                    shorten_cards: false
-                    hide_header: true
-                    consolidate_entities: true
-                    persist_features: false
-                    brightness: false
-                    color_temp: false
-                    white_value: false
-                    color_picker: true
-                    smooth_color_wheel: true
-                    child_card: false
-                    show_slider_percent: false
-                    full_width_sliders: false
-                    header: Plafondspot 1
-                    entity: light.hue_centura_color_spot_1
-                    effects_list: false
-                    style:
-                      background: rgba(0, 0, 0, 0.7)
-                    card_mod:
-                      style: |
-                        ha-card {
-                          box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                        }
-
+                  left: 65%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
                 state: light.hue_centura_color_spot_1_2
             elements:
-              - type: custom:vertical-stack-in-card
+              - type: custom:more-info-card
+                entity: light.hue_centura_color_spot_1_2
+                title: " "
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-radius: 8% !important;
+                      overflow: hidden !important;
+                      height: 550px;
+                      background-color: rgba(10, 10, 10, 0.6) !important;
+                    }
+                    .state-card-toggle {
+                      display: none;
+                    }
+                    .h1.card-header {
+                      display: none;
+                    }
+                    name {
+                      font-weight: 400;
+                    }
                 style:
-                  left: 30%
-                  top: 45%
-                  width: 20%
-                  border-radius: 13px
-                  # box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6)
-                cards:
-                  # - type: custom:slider-button-card
-                  #   entity: light.hue_centura_color_spot_1_2
-                  #   slider:
-                  #     direction: left-right
-                  #     background: gradient
-                  #     use_state_color: true
-                  #     use_percentage_bg_opacity: true
-                  #     show_track: true
-                  #     toggle_on_click: false
-                  #     force_square: false
-                  #   show_name: true
-                  #   show_state: false
-                  #   compact: true
-                  #   icon:
-                  #     show: true
-                  #     haptic: selection
-                  #     use_state_color: true
-                  #     tap_action:
-                  #       action: none
-                  #     icon: hue:pendant-cher
-                  #   action_button:
-                  #     show: true
-                  #     icon: mdi:power-standby
-                  #     tap_action:
-                  #       action: call-service
-                  #       service: script.toggle_light_off
-                  #     mode: custom
-                  #   card_mod:
-                  #     style: |
-                  #       ha-card {
-                  #         --ha-card-background: black;
-                  #         box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                  #         border-radius: 25px !important;
-                  #       }
-
-                  - type: custom:more-info-card
-                    entity: light.hue_centura_color_spot_1_2
-                    style:
-                      left: 70%
-                      top: 50%
-                      width: 18%
-                    card_mod:
-                      style: |
-                        ha-card {
-                          border-radius: 13% !important;
-                          background-color: rgba(10, 10, 10, 0.6) !important;
-                        }
-                        state-card-toggle {
-                          display: none;
-                        }
-                        .card-header {
-                          display: none !important;
-                        }
+                  left: 65%
+                  top: 35%
+                  width: 18%
           - type: conditional
             conditions:
               - entity: input_text.lamptoggle
@@ -10677,26 +10509,3 @@ views:
                           border-radius: 25px !important;
                         }
 
-                  # - type: 'custom:light-entity-card'
-                  #   shorten_cards: false
-                  #   hide_header: true
-                  #   consolidate_entities: true
-                  #   persist_features: false
-                  #   brightness: false
-                  #   color_temp: true
-                  #   white_value: true
-                  #   color_picker: true
-                  #   smooth_color_wheel: true
-                  #   child_card: false
-                  #   show_slider_percent: false
-                  #   full_width_sliders: true
-                  #   header: Overloop Filament
-                  #   entity: light.color_temperature_light_6
-                  #   effects_list: false
-                  #   style:
-                  #     background: rgba(0, 0, 0, 0.7)
-                  #   card_mod:
-                  #     style: |
-                  #       ha-card {
-                  #         box-shadow: 5px 8px 8px 5px rgba(10, 10, 10, 0.6) !important;
-                  #       }

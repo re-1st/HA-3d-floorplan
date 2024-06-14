@@ -119,42 +119,25 @@ panel_custom:
     require_admin: true
     config:
       ingress: core_configurator
-  - name: ha_entet
-    sidebar_title: Entities
-    sidebar_icon: mdi:devices
-    js_url: /api/hassio/app/entrypoint.js
-    url_path: 'config/entities'
-    embed_iframe: true
-    require_admin: true
-    config:
-      ingress: core_configurator
-  - name: ha_addons
-    sidebar_title: Addons
-    sidebar_icon: mdi:palette
-    js_url: /api/hassio/app/entrypoint.js
-    url_path: 'hassio/dashboard'
-    embed_iframe: true
-    require_admin: true
-    config:
-      ingress: core_configurator
-  - name: ha_auto
-    sidebar_title: Automations
-    sidebar_icon: mdi:arrow-collapse
-    js_url: /api/hassio/app/entrypoint.js
-    url_path: 'config/automation'
-    embed_iframe: true
-    require_admin: true
-    config:
-      ingress: core_configurator  
-  - name: check_config
-    sidebar_title: Check Config
-    sidebar_icon: mdi:check
-    js_url: /api/hassio/app/entrypoint.js
-    url_path: 'developer-tools/yaml'
-    embed_iframe: true
-    require_admin: true
-    config:
-      ingress: core_configurator
+
+#   - name: ha_addons
+#     sidebar_title: Addons
+#     sidebar_icon: mdi:palette
+#     js_url: /api/hassio/app/entrypoint.js
+#     url_path: 'hassio/dashboard'
+#     embed_iframe: true
+#     require_admin: true
+#     config:
+#       ingress: core_configurator
+#   - name: ha_auto
+#     sidebar_title: Automations
+#     sidebar_icon: mdi:arrow-collapse
+#     js_url: /api/hassio/app/entrypoint.js
+#     url_path: 'config/automation'
+#     embed_iframe: true
+#     require_admin: true
+#     config:
+#       ingress: core_configurator  
 
 
 
@@ -169,7 +152,7 @@ frontend:
 
 
 
-recorder:
+# recorder:
   # db_url: !secret recorder_db_url
   # auto_purge: false
   # include:
@@ -247,6 +230,16 @@ ffmpeg:
 
 camera:
 
+  - platform: xiaomi_cloud_map_extractor
+    host: !secret xiaomi_vacuum_host
+    token: !secret xiaomi_vacuum_token
+    auto_update: false
+    username: !secret xiaomi_cloud_username
+    password: !secret xiaomi_cloud_password
+    draw: ['all']
+    attributes:
+      - calibration_points
+
 
 #### WOL ####
 wake_on_lan:
@@ -284,14 +277,14 @@ binary_sensor:
 sensor:
 
 
-  - platform: sql
-    db_url: !secret db_url
-    icon: mdi:database
-    queries:
-      - name: HASS DB size
-        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
-        column: 'value'
-        unit_of_measurement: MB
+  # - platform: sql
+  #   db_url: !secret db_url
+  #   icon: mdi:database
+  #   queries:
+  #     - name: HASS DB size
+  #       query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+  #       column: 'value'
+  #       unit_of_measurement: MB
     
   - platform: template
     scan_interval: 5
@@ -348,7 +341,7 @@ sensor:
     sensors:
       huidige_energielevering:
         value_template: >-
-          {% if states('sensor.power_photovoltaics_fronius_power_flow_0_http_192_168_2_18')  == 'unknown' %}
+          {% if states('sensor.power_photovoltaics_fronius_power_flow_0_http_192_168_2_18')  == 'unknown' %} 
             0
           {% else %}
             {{ states('sensor.power_photovoltaics_fronius_power_flow_0_http_192_168_2_18') }}
