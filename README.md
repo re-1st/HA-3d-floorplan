@@ -56,6 +56,7 @@ Photoshop template for to easily generate image files. e.g. for colour synced li
         - slider-entity-row
 
 **Automations / Node Red**
+
 I did quite a lot of my automations in Node Red. Because this is a showcase of my dashboard (and also because i am unsure about security) i did not include the Node Red config to this repo.
 However, some of the visuals you see, like the changing weaher conditions, depend on these automation. Let me know if you would like an export of one of these flows and i will try to make them available. 
 
