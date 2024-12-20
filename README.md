@@ -57,8 +57,8 @@ Photoshop template for to easily generate image files. e.g. for colour synced li
 
 **Automations / Node Red**
 
-I did quite a lot of my automations in Node Red. Because this is a showcase of my dashboard (and also because i am unsure about security) i did not include the Node Red config to this repo.
-However, some of the visuals you see, like the changing weaher conditions, depend on these automation. Let me know if you would like an export of one of these flows and i will try to make them available. 
+I did quite a lot of my automations in Node Red. Because this is a showcase of my dashboard (and also because i am unsure about security) i initially  did not include the Node Red config to this repo.
+However, some of the visuals you see, like the changing weaher conditions, depend on these automation. So i try to add those to this git in the  Node-red-flows folder. Let me know if you would like an export of one of the other flows and i will try to make them available. 
 
 **Design**
 - 3d design Build in Sketchup
